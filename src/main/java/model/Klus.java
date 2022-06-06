@@ -6,21 +6,23 @@ import java.util.ArrayList;
 
 public class Klus implements Serializable {
 
-    private String klusId;
+    private int klusId;
     private String klant;
     private String adres;
     private LocalDate beginDatum;
     private ArrayList<String> materialen = new ArrayList<>();
     private ArrayList<Werkbon> werknemers = new ArrayList<>();
+    private static ArrayList<Klus> allKlussen = new ArrayList<>();
 
     public Klus(String klant, String adres, LocalDate beginDatum) {
         this.klant = klant;
         this.adres = adres;
         this.beginDatum = beginDatum;
 
-        this.klusId = "" + Bedrijf.getBedrijf().getAllKlussen().size() + 1;
+        this.klusId = getAllKlussen().size() + 1;
 
-        if (!Bedrijf.getBedrijf().getAllKlussen().contains(this)) Bedrijf.getBedrijf().addKlus(this);
+        // add de aangemaakte klus aan alleklussen
+        if (!allKlussen.contains(this)) allKlussen.add(this);
     }
 
     public void addWerknemer(Werknemer werknemer) {
@@ -50,7 +52,24 @@ public class Klus implements Serializable {
         return materialen;
     }
 
-    public String getId() {
+    public int getId() {
         return klusId;
+    }
+
+    public static Klus getKlusById(int id){
+        for (Klus k : getAllKlussen()){
+            if (k.getId() == id){
+                return k;
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<Klus> getAllKlussen() {
+        return allKlussen;
+    }
+
+    public static void setAllKlussen(ArrayList<Klus> allKlussen) {
+        Klus.allKlussen = allKlussen;
     }
 }

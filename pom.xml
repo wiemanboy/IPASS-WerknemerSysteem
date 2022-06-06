@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>WerknemerSysteem</groupId>
+    <groupId>IPASS-WerknemerSysteem-Backend</groupId>
     <artifactId>IPASS-WerknemerSysteem-Backend</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
@@ -23,6 +23,7 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
+
         <dependency> <!-- running on tomcat -->
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -33,14 +34,14 @@
         <dependency> <!-- specifying we actually use catalina as well -->
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
-            <version>9.0.31</version>
+            <version>10.0.20</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency><!-- for handling json -->
             <groupId>org.glassfish</groupId>
             <artifactId>javax.json</artifactId>
-            <version>1.0.4</version>
+            <version>1.1.4</version>
         </dependency>
 
         <dependency>
@@ -58,13 +59,13 @@
         <dependency><!-- for injection purposes with jax-rs-->
             <groupId>org.glassfish.jersey.inject</groupId>
             <artifactId>jersey-hk2</artifactId>
-            <version>2.30.1</version>
+            <version>3.0.4</version>
         </dependency>
 
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
-            <version>2.35</version>
+            <version>3.0.4</version>
         </dependency>
 
         <dependency>
@@ -76,7 +77,7 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-storage-blob</artifactId>
-            <version>12.16.0</version>
+            <version>12.16.1</version>
         </dependency>
 
         <dependency>
@@ -88,7 +89,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.2.2</version>
+            <version>2.13.3</version>
         </dependency>
 
     </dependencies>
@@ -96,6 +97,7 @@
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
+
                 <plugin><!-- Plugin to export war to tomcat -->
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.1.0</version>

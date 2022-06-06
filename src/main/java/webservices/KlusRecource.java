@@ -1,6 +1,5 @@
 package webservices;
 
-import model.Bedrijf;
 import model.Klus;
 
 import javax.ws.rs.GET;
@@ -17,8 +16,7 @@ public class KlusRecource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getKlussen() {
-        Klus k1 = new Klus("klant","adres", LocalDate.now());
-        ArrayList<Klus> klussen = Bedrijf.getBedrijf().getAllKlussen();
+        ArrayList<Klus> klussen = Klus.getAllKlussen();
         return Response.ok(klussen).build();
     }
 

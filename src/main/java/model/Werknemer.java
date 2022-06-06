@@ -10,6 +10,7 @@ public class Werknemer implements Serializable {
     private boolean adminRecht;
     private StringBuilder hash;
     private byte[] salt;
+    private static ArrayList<Werknemer> allWerknemers = new ArrayList<>();
 
     public Werknemer(String naam, double uurloon, boolean adminRecht){
         this.naam = naam;
@@ -26,7 +27,8 @@ public class Werknemer implements Serializable {
         salt = PasswordHashing.generateSalt();
         hash = PasswordHashing.hashPassword("1234", salt);
 
-        if (!Bedrijf.getBedrijf().getAllWerknemers().contains(this)) Bedrijf.getBedrijf().addWerknemer(this);
+        // add de aangemaakte werknemer aan allewerknemers
+        if (!allWerknemers.contains(this)) allWerknemers.add(this);
     }
 
     public boolean checkPassword(String password){
@@ -57,4 +59,22 @@ public class Werknemer implements Serializable {
     public boolean getAdminRecht(){
         return adminRecht;
     }
+
+    public static Werknemer getWerknemerByNaam(String naam) {
+        for (Werknemer w : getAllWerknemers()) {
+            if (w.getNaam().equals(naam)) {
+                return w;
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<Werknemer> getAllWerknemers(){
+        return allWerknemers;
+    }
+
+    public static void removeWerknemer(Werknemer werknemer){
+        allWerknemers.remove(werknemer);
+    }
+
 }

@@ -3,13 +3,13 @@ package persistance;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
-import model.Bedrijf;
-import model.Werknemer;
+import model.Klus;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.*;
+import java.util.ArrayList;
 
 @WebListener
 public class PersistanceManager implements ServletContextListener {
@@ -17,7 +17,7 @@ public class PersistanceManager implements ServletContextListener {
     private final static String SASTOKEN = "?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-06-06T17:24:09Z&st=2022-06-06T09:24:09Z&spr=https&sig=gII49IaNhYeJLJAlRc264vYEnTYlGRA%2Bjcas5TIDMaE%3D";
     private final static String CONTAINER = "ipasscontainer";
 
-    private static BlobContainerClient blobContainer = new BlobContainerClientBuilder().sasToken(SASTOKEN).containerName(CONTAINER).endpoint(ENDPOINT).buildClient();
+    private static BlobContainerClient blobContainer = new BlobContainerClientBuilder().endpoint(ENDPOINT).sasToken(SASTOKEN).containerName(CONTAINER).buildClient();
 
     //@Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -31,13 +31,13 @@ public class PersistanceManager implements ServletContextListener {
 
                     ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
 
-
                     ObjectInputStream ois = new ObjectInputStream(bais);
 
-                    Bedrijf loadedBedrijf = (Bedrijf) ois.readObject();
-                    Bedrijf.setBedrijf(loadedBedrijf);
+                    ArrayList<Klus> loadedBedrijf = (ArrayList<Klus>) ois.readObject();
+                    Klus.setAllKlussen(loadedBedrijf);
 
-                    System.out.println(loadedBedrijf.getAllWerknemers());
+                    System.out.println(loadedBedrijf);
+                    System.out.println(Klus.getAllKlussen());
 
                     baos.close();
                     bais.close();
@@ -59,7 +59,7 @@ public class PersistanceManager implements ServletContextListener {
         try {
 
             BlobClient blob = blobContainer.getBlobClient("ipasscontainer");
-            Bedrijf saveBedrijf = Bedrijf.getBedrijf();
+            ArrayList<Klus> saveBedrijf = Klus.getAllKlussen();
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);

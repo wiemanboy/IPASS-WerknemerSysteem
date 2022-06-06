@@ -4,7 +4,5 @@ import javax.ws.rs.ApplicationPath;
 
 @ApplicationPath("restservices")
 public class JerseyConfig extends ResourceConfig {
-    public JerseyConfig() {
-        packages("webservices");
-    }
+    //public JerseyConfig() {packages("webservices");} // deze werkt niet
 }
