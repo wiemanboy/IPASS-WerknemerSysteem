@@ -17,7 +17,13 @@ public class KlusRecource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getKlussen() {
         ArrayList<Klus> klussen = Klus.getAllKlussen();
-        return Response.ok(klussen).build();
+        ArrayList<Klus> klussenCopy = new ArrayList<>();
+        for (Klus k : klussen){
+            if (k.getId() != 1) {
+                klussenCopy.add(k);
+            }
+        }
+        return Response.ok(klussenCopy).build();
     }
 
 }

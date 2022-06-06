@@ -28,7 +28,10 @@ public class Werknemer implements Serializable {
         hash = PasswordHashing.hashPassword("1234", salt);
 
         // add de aangemaakte werknemer aan allewerknemers
-        if (!allWerknemers.contains(this)) allWerknemers.add(this);
+        if (!allWerknemers.contains(this)) {
+            allWerknemers.add(this);
+            Klus.getKlusById(1).addWerknemer(this);
+        }
     }
 
     public boolean checkPassword(String password){
