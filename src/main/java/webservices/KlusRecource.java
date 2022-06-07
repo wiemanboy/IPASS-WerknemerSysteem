@@ -23,7 +23,7 @@ public class KlusRecource {
                 klussenCopy.add(k);
             }
         }
-        return Response.ok(klussenCopy).build();
+        return Response.ok(klussen).build();
     }
 
 }
