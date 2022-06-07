@@ -26,4 +26,11 @@ public class KlusRecource {
         return Response.ok(klussen).build();
     }
 
+    @GET
+    @Path("/klus")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getKlus() {
+        return Response.ok("kaas").build();
+    }
+
 }
