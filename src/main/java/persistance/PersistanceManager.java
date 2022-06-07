@@ -4,19 +4,17 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
 import model.Klus;
-import model.Werknemer;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 @WebListener
 public class PersistanceManager implements ServletContextListener {
     private final static String ENDPOINT = "https://jarnoblobstorage.blob.core.windows.net/ipasscontainer";
-    private final static String SASTOKEN = "?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-06-06T17:24:09Z&st=2022-06-06T09:24:09Z&spr=https&sig=gII49IaNhYeJLJAlRc264vYEnTYlGRA%2Bjcas5TIDMaE%3D";
+    private final static String SASTOKEN = "?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-08-07T19:35:55Z&st=2022-06-07T11:35:55Z&spr=https&sig=C74gelY0NXNwp6emqHrpO3khlBcH%2BNCN%2FDcA9yCfe9Y%3D";
     private final static String CONTAINER = "ipasscontainer";
 
     private static BlobContainerClient blobContainer = new BlobContainerClientBuilder().endpoint(ENDPOINT).sasToken(SASTOKEN).containerName(CONTAINER).buildClient();
