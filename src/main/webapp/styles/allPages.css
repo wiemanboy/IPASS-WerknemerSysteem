@@ -1,0 +1,15 @@
+header {border: 2px; border-style: solid;}
+header h1 {text-align: center;}
+
+button, input {border-radius: 5px; border-width: 1px; border-style: solid; transition: 0.3s;}
+button {opacity: 0.75;}
+button:hover {opacity: 1; font-size: 15px; cursor:pointer;}
+
+input:hover, input:focus {font-size: 15px;}
+
+@media (prefers-color-scheme: dark) {
+    body {background-color: #343434;}
+        input {background-color: #444444;}
+        header, button {background-color: #1B1B1B;}
+    * {color: #999999;}
+  }
