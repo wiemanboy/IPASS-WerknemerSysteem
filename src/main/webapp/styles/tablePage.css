@@ -31,7 +31,7 @@ button {width: 100%; min-width: 97px; height: 50px; margin-top: 5px; bottom: 100
 }
 
 /* addButton animations */
-#addButton:hover {width: 105px; height: 55px; font-size: 52px;}
+#addButton:hover {width: 110px; height: 55px; font-size: 52px;}
 #addButton div {position:relative;}
 #addButton:hover div{ bottom: 5px;}
 
