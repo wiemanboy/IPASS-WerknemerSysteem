@@ -1,5 +1,11 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,6 +15,10 @@ public class Klus implements Serializable {
     private int klusId;
     private String klant;
     private String adres;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate beginDatum;
     private ArrayList<String> materialen = new ArrayList<>();
     private ArrayList<Werkbon> werknemers = new ArrayList<>();
@@ -62,6 +72,21 @@ public class Klus implements Serializable {
 
     public ArrayList<String> getMaterialen() {
         return materialen;
+    }
+
+    public boolean equals(Object andereObject) {
+        boolean equal = false;
+
+        if (andereObject instanceof Klus) {
+            Klus klus2 = (Klus) andereObject;
+
+            if (this.klant.equals(klus2.klant) &&
+                    this.adres.equals(klus2.adres) &&
+                    this.beginDatum.equals(klus2.beginDatum)) {
+                equal = true;
+            }
+        }
+        return equal;
     }
 
     public int getId() {
