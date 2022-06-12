@@ -47,7 +47,7 @@ public class Werknemer implements Serializable {
         this.uurloon = uurloon;
     }
 
-    public void changeAdminRecht(String role){
+    public void changeRole(String role){
         this.role = role;
     }
 
@@ -63,6 +63,21 @@ public class Werknemer implements Serializable {
         return role;
     }
 
+    public boolean equals(Object andereObject) {
+        boolean equal = false;
+
+        if (andereObject instanceof Werknemer) {
+            Werknemer werknemer2 = (Werknemer) andereObject;
+
+            if (this.naam.equals(werknemer2.naam) &&
+                    this.uurloon == werknemer2.uurloon &&
+                    this.role.equals(werknemer2.role)) {
+                equal = true;
+            }
+        }
+        return equal;
+    }
+
     public static Werknemer getWerknemerByNaam(String naam) {
         for (Werknemer w : getAllWerknemers()) {
             if (w.getNaam().equals(naam)) {
@@ -74,6 +89,10 @@ public class Werknemer implements Serializable {
 
     public static ArrayList<Werknemer> getAllWerknemers(){
         return allWerknemers;
+    }
+
+    public static void addWerknemers(Werknemer werknemer){
+        allWerknemers.add(werknemer);
     }
 
     public static void removeWerknemer(Werknemer werknemer){

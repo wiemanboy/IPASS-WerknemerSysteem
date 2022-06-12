@@ -4,6 +4,8 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
 import model.Klus;
+import model.Werkbon;
+import model.Werknemer;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -36,7 +38,13 @@ public class PersistanceManager implements ServletContextListener {
                     ArrayList<Klus> loadedBedrijf = (ArrayList<Klus>) ois.readObject();
                     Klus.setAllKlussen(loadedBedrijf);
 
-                    System.out.println(loadedBedrijf);
+                    Klus data = Klus.getKlusById(1);
+                    if (data != null) {
+                        for (Werkbon w : data.getWerknemers()) {
+                            Werknemer.addWerknemers(w.getWerknemer());
+                        }
+                    }
+
                     System.out.println(Klus.getAllKlussen());
 
                     baos.close();
