@@ -14,8 +14,8 @@ class WerkbonTest {
 
     @BeforeEach
     public void init(){
-        w1 = new Werknemer("naam",0.0,true);
         k1 = new Klus("klantNaam", "straat", LocalDate.now());
+        w1 = new Werknemer("naam",0.0,"werknemer");
         k1.addWerknemer(w1);
     }
 

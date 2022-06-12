@@ -12,9 +12,9 @@ class KlusTest {
 
     @BeforeEach
     public void init(){
-        w1 = new Werknemer("naam",0.0,true);
-        w2 = new Werknemer("naam",0.0,true);
         k1 = new Klus("klantNaam", "straat", LocalDate.now());
+        w1 = new Werknemer("naam",0.0,"werknemer");
+        w2 = new Werknemer("naam",0.0,"admin");
     }
 
     @Test

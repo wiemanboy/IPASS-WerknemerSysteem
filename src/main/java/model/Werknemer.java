@@ -7,14 +7,14 @@ public class Werknemer implements Serializable {
 
     private String naam;
     private double uurloon;
-    private boolean adminRecht;
+    private String role;
     private StringBuilder hash;
     private byte[] salt;
     private static ArrayList<Werknemer> allWerknemers = new ArrayList<>();
 
-    public Werknemer(String naam, double uurloon, boolean adminRecht){
+    public Werknemer(String naam, double uurloon, String role){
         this.naam = naam;
-        this.adminRecht = adminRecht;
+        this.role = role;
 
         if (uurloon < 0) {
             this.uurloon = 0;
@@ -47,8 +47,8 @@ public class Werknemer implements Serializable {
         this.uurloon = uurloon;
     }
 
-    public void changeAdminRecht(boolean adminRecht){
-        this.adminRecht = adminRecht;
+    public void changeAdminRecht(String role){
+        this.role = role;
     }
 
     public double getUurloon(){
@@ -59,8 +59,8 @@ public class Werknemer implements Serializable {
         return naam;
     }
 
-    public boolean getAdminRecht(){
-        return adminRecht;
+    public String getAdminRecht(){
+        return role;
     }
 
     public static Werknemer getWerknemerByNaam(String naam) {

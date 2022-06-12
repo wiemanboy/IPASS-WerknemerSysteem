@@ -14,6 +14,18 @@ public class Klus implements Serializable {
     private ArrayList<Werkbon> werknemers = new ArrayList<>();
     private static ArrayList<Klus> allKlussen = new ArrayList<>();
 
+    public String getKlant() {
+        return klant;
+    }
+
+    public String getAdres() {
+        return adres;
+    }
+
+    public LocalDate getBeginDatum() {
+        return beginDatum;
+    }
+
     public Klus(String klant, String adres, LocalDate beginDatum) {
         this.klant = klant;
         this.adres = adres;
