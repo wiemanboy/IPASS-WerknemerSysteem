@@ -1,0 +1,56 @@
+/* position content in grid */
+.content {display: grid; grid-template-columns: repeat(2); grid-auto-rows: minmax(100px, auto);}
+
+#werknemerInfo {
+    grid-column: 1; 
+    grid-column-end: 100px; 
+    border: 0px;
+    border-style: solid; height: 100%; 
+    padding-right: 5px;
+}
+
+#passwordForm {
+    grid-column: 2; 
+    grid-column-end: 100px; 
+    border: 0px;
+    border-style: solid; height: 100%; 
+    padding-right: 5px;
+}
+
+/* style input */
+input[type=text], input[type=password] {width: 300px; display: block;}
+div {width: 100%; margin-top: 25px; margin-bottom: 5px;}
+#adminRecht {margin: 0px; height: 11px; margin-left: 10px;}
+
+/* style buttons */
+a {text-decoration-line: none;}
+button {width: 100px; margin: 2px;}
+#deleteBtn {color: red; border-color: red;}
+
+/* position buttons */
+#editBtn {position:absolute; right: 1%; margin-top: 10px;}
+#deleteBtn {position: absolute; right: 1%;}
+
+/* size change based on screen width */
+@media screen and (min-width: 800px) {
+    input[type=text], input[type=password] {width: 300px;}
+}
+
+@media screen and (min-width: 900px) {
+    input[type=text], input[type=password] {width: 400px;}
+}
+
+@media screen and (max-width: 900px) {
+    #adminRecht {width: 20px;}
+}
+
+@media screen and (max-width: 720px) {
+    input[type=text], input[type=password] {width: 200px;}
+}
+
+@media screen and (max-width: 520px) {
+    input[type=text], input[type=password] {width: 140px;}
+}
+
+#uurloon {width: 30px; text-align: center; display: inline; margin-left: 5px; margin-right: 5px;}
+label div {margin-left: 20px; margin-top: 0px;}
