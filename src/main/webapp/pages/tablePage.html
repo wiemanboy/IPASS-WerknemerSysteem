@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
     <head>
-        <title id="tableTitle">Placeholder</title>
+        <title id="tableTitle"></title>
         <link rel="stylesheet" href="../styles/initTable.css" />
         <meta name="viewport" content="width=device-width">
     </head>
@@ -11,29 +11,26 @@
     </header>
 
     <div class="content">
+        <!-- buttons -->
         <nav class="gridcell">
-            <a href=""><button>klussen</button></a>
-            <a href=""><button>werknemers</button></a>
-            <a href="./werknemerPage.html"><button>mijn gegevens</button></a>
-            
+            <a href="./klusPage.html"><button>Klussen</button></a>
+            <button>Werknemers</button>
+            <a href="./werknemerPage.html"><button>Mijn gegevens</button></a>
         </nav>
+
+        <!-- table -->
         <main class="gridcell">
             <table>
                 <tbody>
-                    <tr class="uneven">
-                        <td id="tableInfo1">klant</td>
-                        <td id="tableInfo2">adres</td>
-                        <td id="tableInfo3">00/00/0000</td>
-                    </tr>
                 </tbody>
             </table>
 
             <!-- template for table-->
             <template>
                 <tr>
-                    <td id="tableInfo1"></td>
-                    <td id="tableInfo2"></td>
-                    <td id="tableInfo3"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </template>
         </main>

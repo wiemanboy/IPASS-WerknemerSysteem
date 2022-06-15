@@ -1,5 +1,5 @@
 /* style all forms */
-input {height: 40px; margin: 15px; border-radius: 5px; border-width: 1px; border-style: solid;}
+input,select {height: 40px; margin: 15px; border-radius: 5px; border-width: 1px; border-style: solid;}
 button {margin: 15px; padding: 10px;}
 
 /* remove form border */

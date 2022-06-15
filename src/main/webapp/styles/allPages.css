@@ -3,7 +3,7 @@ header {border: 2px; border-style: solid;}
 header h1 {text-align: center;}
 
 /* style buttons */
-button, input {border-radius: 5px; border-width: 1px; border-style: solid; transition: 0.3s; height: 45px;}
+button, input, select {border-radius: 5px; border-width: 1px; border-style: solid; transition: 0.3s; height: 45px;}
 button {opacity: 0.75;}
 
 /* button and input animations */

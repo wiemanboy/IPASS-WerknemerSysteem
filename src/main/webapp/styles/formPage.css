@@ -19,17 +19,21 @@
 
 /* style input */
 input[type=text], input[type=password] {width: 300px; display: block;}
-div {width: 100%; margin-top: 25px; margin-bottom: 10px;}
+input[type=date] {display: block;}
+div {width: 100%; margin-bottom: 10px;}
 #adminRecht {margin: 0px; height: 20px; width: 20px; margin-left: 10px; position: relative; top: 5px;}
 
 /* style buttons */
 a {text-decoration-line: none;}
-button {width: 100px; margin: 2px;}
+button {width: 100px; margin: 2px; margin-top: 10px;}
+
+#saveBtn {margin-left: 27px;}
+
 #deleteBtn {color: red; border-color: red;}
 
 /* position buttons */
 #editBtn {position:absolute; right: 1%; margin-top: 10px;}
-#deleteBtn {position: absolute; right: 1%;}
+#deleteBtn {position: absolute; right: 1%; top: 80%;}
 
 /* size change based on screen width */
 @media screen and (min-width: 800px) {
@@ -38,10 +42,6 @@ button {width: 100px; margin: 2px;}
 
 @media screen and (min-width: 900px) {
     input[type=text], input[type=password] {width: 400px;}
-}
-
-@media screen and (max-width: 900px) {
-    #adminRecht {width: 20px;}
 }
 
 @media screen and (max-width: 720px) {
@@ -53,6 +53,12 @@ button {width: 100px; margin: 2px;}
 }
 
 
-/* style uurloon */
-#uurloon {width: 30px; text-align: center; display: inline; margin-left: 5px; margin-right: 5px;}
-label div {margin-left: 20px; margin-top: 0px;}
+/* style uren */
+#addUren, #addMinute, #uurloon {width: 30px; text-align: center; display: inline; margin-left: 5px; margin-right: 5px;}
+
+/* remove arrows from number input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

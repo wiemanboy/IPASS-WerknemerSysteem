@@ -2,7 +2,6 @@
 table {width: 100%; margin-top: 10px; padding-left: 5px;}
 td {font-size: 20px;}
 tr {height: 40px;}
-main {grid-column: 2/7;}
 .uneven {background-color: #2e2e2e;}
 
 @media (prefers-color-scheme: light) {

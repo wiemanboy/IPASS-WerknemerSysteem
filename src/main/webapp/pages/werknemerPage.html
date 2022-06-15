@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
     <head>
-        <title id="tableTitle">Placeholder</title>
+        <title id="tableTitle">Werknemer</title>
         <link rel="stylesheet" href="../styles/initForm.css" />
         <meta name="viewport" content="width=device-width">
     </head>
@@ -13,45 +13,45 @@
     <body>
         <main>
             <form id="werknemerForm" autocomplete="off">
-            <a href="">
+
+                <!-- buttons -->
+                <button type="button" id="saveBtn">opslaan</button>
+                <a href="./tablePage.html">
+                    <button type="button" id="cancelBtn">anuleer</button>
+                </a>
                 <button type="button" id="editBtn">aanpassen</button>
-            </a>
+
                 <fieldset class="noBorderForm">
                     <div class="content">
-                    <div id="werknemerInfo">
-                        <label for="name">naam:
-                            <input type="text" name="name" id="name" placeholder="voer naam in...">
-                        </label>
-                        <label for="uurloon">uurloon:
-                            <div>$
-                            <input type="text" name="uurloon" id="uurloon" placeholder="0">
-                            /uur</div>
-                        </label>
-                        <label for="adminRecht">adminRecht:
-                            <input type="checkbox" name="adminRecht" id="adminRecht">
-                        </label>
-                    </div>
 
-                    <div id="passwordForm">
-                        <label for="password">nieuw wachtwoord:
-                            <input type="password" name="newpassword" id="newPassword" placeholder="voer wachtwoord in...">
-                        </label>
-                        <label for="password">bevestig wachtwoord:
-                            <input type="password" name="confirmpassword" id="confirmPassword" placeholder="bevestig wachtwoord...">
-                        </label>
-                    </div>
-                    </div>
+                        <!-- info of werknemer -->
+                        <div id="werknemerInfo">
+                            <label for="name">Naam:
+                                <input type="text" name="name" id="name" placeholder="voer naam in...">
+                            </label>
+                            <label for="uurloon">Uurloon:
+                                <div>$
+                                <input type="number" min="0" name="uurloon" class="uren" id="uurloon" placeholder="0">
+                                /uur</div>
+                            </label>
+                            <label for="adminRecht">Adminrecht:
+                                <input type="checkbox" name="adminRecht" id="adminRecht">
+                            </label>
+                        </div>
 
-                    <a href="">
-                        <button type="button" id="saveBtn">opslaan</button>
-                    </a>
-                    <a href="">
-                        <button type="button" id="cancelBtn">anuleer</button>
-                    </a>
-                    <a href="">
-                        <button type="button" id="deleteBtn">verwijder</button>
-                    </a>
+                        <!-- change password -->
+                        <div id="passwordForm">
+                            <label for="password">Nieuw wachtwoord:
+                                <input type="password" name="newpassword" id="newPassword" placeholder="voer wachtwoord in...">
+                            </label>
+                            <label for="password">Bevestig wachtwoord:
+                                <input type="password" name="confirmpassword" id="confirmPassword" placeholder="bevestig wachtwoord...">
+                            </label>
+                        </div>
+                    </div>
                 </fieldset>
+                <!-- delete button -->
+                <button type="button" id="deleteBtn">verwijder</button>
             </form>
         </main>
     </body>

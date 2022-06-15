@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <title id="tableTitle">Klus</title>
+        <link rel="stylesheet" href="../styles/initKlusForm.css" />
+        <meta name="viewport" content="width=device-width">
+    </head>
+
+    <header>
+        <h1 id="klusPageHead">Klus</h1>
+    </header>
+
+    <body>
+        <main>
+            <form id="klusForm" autocomplete="off">
+
+                <!-- buttons -->
+                <button type="button" id="saveBtn">opslaan</button>
+                <a href="./tablePage.html">
+                    <button type="button" id="cancelBtn">anuleer</button>
+                </a>
+                <button type="button" id="editBtn">aanpassen</button>
+            
+                <fieldset class="noBorderForm">
+                    <div class="content">
+
+                        <!-- info of klant -->
+                        <div id="klantInfo">
+                            <label for="klant">klant:
+                                <input type="text" name="klant" id="klant" placeholder="voer naam van klant in...">
+                            </label>
+                            <label for="adres">Adres:
+                                <input type="text" name="adres" id="adres" placeholder="voer adres van klant in...">
+                            </label>
+                            <label for="Begindatum">Begindatum:
+                                <input type="date" name="Begindatum" id="Begindatum">
+                            </label>
+                        </div>
+
+                        <!-- info of klus -->
+                        <div id="klusInfo">
+                            <label for="addUren">
+                                <span> Voeg uren aan klus: 
+                                <input type="number" min="0" name="addUren" id="addUren" placeholder="0">:
+                                <input type="number" min="0" name="addUren" id="addMinute" placeholder="00">
+                                </span>
+                            </label>
+
+                            <div class="content">
+                                <!-- table for materialen -->
+                            <div id="materials">
+                                <table id="materialTable">
+                                    <thead><th>materialen</th></thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+
+                                <div>
+                                    <input type="text" id="addMaterial"><button id="submitMaterialBtn">+</button>
+                                </div>
+                    
+                                <!-- template for table-->
+                                <template id="materials template">
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                </template>
+                            </div>
+
+                            <!-- table for werknemers -->
+                            <div id="werknemers">
+                                <table id="werknemerTable">
+                                    <thead><th id="kaas">werknemers</th></thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+
+                                <div>
+                                    <select name="" id=""></select><button id="submitWerknemerBtn">+</button>
+                                </div>
+                    
+                                <!-- template for table-->
+                                <template id="werbonTemplate">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </template>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </main>
+    </body>
+
+
+</html>
+    

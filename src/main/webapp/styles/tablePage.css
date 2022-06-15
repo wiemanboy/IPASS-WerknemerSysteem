@@ -1,5 +1,6 @@
 /* position elements */
 .content {display: grid; grid-template-columns: repeat(2, 1fr 4fr); grid-auto-rows: minmax(100px, auto);}
+main {grid-column: 2/7;}
 nav {
     grid-column-end: 100px; 
     border: 0px; border-right: 2px; 
