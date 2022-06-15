@@ -9,10 +9,12 @@ class KlusTest {
     Werknemer w1;
     Werknemer w2;
     Klus k1;
+    Klus k2;
 
     @BeforeEach
     public void init(){
         k1 = new Klus("klantNaam", "straat", LocalDate.now());
+        k2 = new Klus("klantNaam1", "straat2", LocalDate.now());
         w1 = new Werknemer("naam",0.0,"werknemer");
         w2 = new Werknemer("naam",0.0,"admin");
     }
@@ -42,6 +44,12 @@ class KlusTest {
         System.out.println("eerste materiaal klopt");
         assertEquals("Materiaal2", k1.getMaterialen().get(1));
         System.out.println("tweede materiaal klopt");
+    }
+
+    @Test
+    public void TestGetKlusById(){
+        assertEquals(k2, Klus.getKlusById(2));
+        assertEquals(null, Klus.getKlusById(3));
     }
 
 }

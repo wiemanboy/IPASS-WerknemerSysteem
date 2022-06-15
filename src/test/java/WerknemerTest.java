@@ -10,11 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class WerknemerTest {
     Klus k1;
     Werknemer w1;
+    Werknemer w2;
+    Werknemer w3;
 
     @BeforeEach
     public void init(){
         k1 = new Klus("klantNaam", "straat", LocalDate.now());
         w1 = new Werknemer("naam",0.0,"werknemer");
+        w2 = new Werknemer("naam2",0.0,"werknemer");
+        w3 = new Werknemer("naam3",0.0,"admin");
     }
 
     @Test
@@ -38,6 +42,13 @@ class WerknemerTest {
     @Test
     public void TestIncorrectPassword(){
         assertFalse(w1.checkPassword("4321"));
+    }
+
+    @Test
+    public void TestGetWerknemerByNaam(){
+        assertEquals(w2, Werknemer.getWerknemerByNaam("naam2"));
+        assertEquals(null, Werknemer.getWerknemerByNaam("bart"));
+
     }
 
 }
