@@ -4,3 +4,7 @@ td {font-size: 20px;}
 tr {height: 40px;}
 main {grid-column: 2/7;}
 .uneven {background-color: #2e2e2e;}
+
+@media (prefers-color-scheme: light) {
+    .uneven {background-color: #efefef;}
+}
