@@ -1,6 +1,7 @@
 package webservices;
 
 import model.Klus;
+import model.Werkbon;
 import model.Werknemer;
 import webservices.requests.AddMateriaalRequest;
 import webservices.requests.AddWerknemerRequest;
@@ -66,8 +67,11 @@ public class KlusRecource {
 
         if (klus == null) {return Response.status(404).entity("Klus not found!").build();}
         if (werknemer == null) {return Response.status(404).entity("Werknemer not found!").build();}
-        if (klus.getWerknemers().contains(werknemer)) {return Response.status(409).entity("Werknemer already added!").build();}
-
+        for (Werkbon wb : klus.getWerknemers()) {
+            if (wb.getWerknemer().equals(werknemer)) {
+                return Response.status(409).entity("Werknemer already added!").build();
+            }
+        }
         klus.addWerknemer(werknemer);
 
         return Response.status(200).entity(klus).build();
@@ -89,7 +93,11 @@ public class KlusRecource {
 
         if (klus == null) {return Response.status(404).entity("Klus not found!").build();}
         if (werknemer == null) {return Response.status(404).entity("Werknemer not found!").build();}
-        if (klus.getWerknemers().contains(werknemer)) {return Response.status(409).entity("Werknemer already added!").build();}
+        for (Werkbon wb : klus.getWerknemers()) {
+            if (wb.getWerknemer().equals(werknemer)) {
+                return Response.status(409).entity("Werknemer already added!").build();
+            }
+        }
 
         klus.addWerknemer(werknemer);
 
