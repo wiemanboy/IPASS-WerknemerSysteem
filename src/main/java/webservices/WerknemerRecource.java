@@ -1,6 +1,5 @@
 package webservices;
 
-import model.Klus;
 import model.Werknemer;
 import webservices.requests.CreateWerknemerRequest;
 import webservices.requests.DeleteWerknemerRequest;
@@ -31,7 +30,9 @@ public class WerknemerRecource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getWerknemer(@PathParam("naam") String werknemerNaam){
         Werknemer werknemer = Werknemer.getWerknemerByNaam(werknemerNaam);
+
         if (werknemer != null) {return Response.status(200).entity(werknemer).build();}
+
         return Response.status(404).entity("Werknemer not found").build();
     }
 
@@ -40,6 +41,7 @@ public class WerknemerRecource {
     @Path("/self")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSelf(@Context SecurityContext sc) {
+        // get self
         if (sc.getUserPrincipal() instanceof Werknemer){
             Werknemer current = (Werknemer) sc.getUserPrincipal();
             return Response.ok(current).build();
@@ -55,9 +57,11 @@ public class WerknemerRecource {
     public Response createWerknemer(CreateWerknemerRequest request) {
         List<Werknemer> werknemersCopy = new ArrayList<Werknemer>(Werknemer.getAllWerknemers());
         Werknemer newWerknemer = new Werknemer(request.naam, request.uurloon, request.role);
+
         if (werknemersCopy.contains(newWerknemer)) {
             return Response.status(409).entity("Werknemer already exists").build();
         }
+
         return Response.status(201).entity(newWerknemer).build();
     }
 
@@ -68,18 +72,30 @@ public class WerknemerRecource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateWerknemer(UpdateWerknemerRequest request){
         Werknemer werknemer = Werknemer.getWerknemerByNaam(request.naam);
+
         if (werknemer == null) {return Response.status(404).entity("Werknemer not found").build();}
+
         werknemer.changeUurloon(request.uurloon);
         werknemer.changeRole(request.role);
+
         return Response.status(200).entity(werknemer).build();
     }
 
     @PUT
+    @RolesAllowed({"user","admin"})
     @Path("/updatepassword")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateWerknemer(UpdatePasswordRequest request){
-        //if (request.password != null) {werknemer.generateNewPassword(request.password);System.out.println("update password");}
+    public Response updateWerknemer(@Context SecurityContext sc, UpdatePasswordRequest request){
+        // get self
+        Werknemer current = null;
+        if (sc.getUserPrincipal() instanceof Werknemer){
+            current = (Werknemer) sc.getUserPrincipal();
+        }
+
+        if (current == null) {return Response.status(404).build();}
+        current.generateNewPassword(request.password);
+
         return Response.status(200).build();
         }
 
@@ -90,8 +106,11 @@ public class WerknemerRecource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteWerknemer(DeleteWerknemerRequest request){
         Werknemer werknemer = Werknemer.getWerknemerByNaam(request.naam);
+
         if (werknemer == null) {return Response.status(404).entity("Werknemer not found").build();}
+
         Werknemer.removeWerknemer(werknemer);
+
         return Response.status(200).entity(werknemer).build();
     }
 }

@@ -23,6 +23,7 @@ public class KlusRecource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getKlussen() {
         ArrayList<Klus> klussen = Klus.getAllKlussen();
+
         return Response.ok(klussen).build();
     }
 
@@ -32,7 +33,9 @@ public class KlusRecource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getKlus(@PathParam("id") int klusId) {
         Klus klus = Klus.getKlusById(klusId);
+
         if (klus != null) {return Response.status(200).entity(klus).build();}
+
         return Response.status(404).entity("Klus not found").build();
     }
 
@@ -44,24 +47,52 @@ public class KlusRecource {
     public Response createKlus(CreateKlusRequest request) {
         List<Klus> klussenCopy = new ArrayList<Klus>(Klus.getAllKlussen());
         Klus newKlus = new Klus(request.klant, request.adres, request.getBegindatum());
+
         if (klussenCopy.contains(newKlus)) {
             return Response.status(409).entity("Klus already exists").build();
         }
+
         return Response.status(201).entity(newKlus).build();
     }
 
     @POST
-    @RolesAllowed({"user","admin"})
+    @RolesAllowed("admin")
     @Path("/klus{id}/addwerknemer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addWerknemer(@PathParam("id") int klusID, AddWerknemerRequest request) {
         Werknemer werknemer = Werknemer.getWerknemerByNaam(request.naam);
         Klus klus = Klus.getKlusById(klusID);
+
         if (klus == null) {return Response.status(404).entity("Klus not found!").build();}
         if (werknemer == null) {return Response.status(404).entity("Werknemer not found!").build();}
         if (klus.getWerknemers().contains(werknemer)) {return Response.status(409).entity("Werknemer already added!").build();}
+
         klus.addWerknemer(werknemer);
+
+        return Response.status(200).entity(klus).build();
+    }
+
+    @POST
+    @RolesAllowed("admin")
+    @Path("/klus{id}/addself")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addSelf(@PathParam("id") int klusID, @Context SecurityContext sc) {
+        // get self
+        Werknemer werknemer = null;
+        if (sc.getUserPrincipal() instanceof Werknemer){
+            werknemer = (Werknemer) sc.getUserPrincipal();
+        }
+
+        Klus klus = Klus.getKlusById(klusID);
+
+        if (klus == null) {return Response.status(404).entity("Klus not found!").build();}
+        if (werknemer == null) {return Response.status(404).entity("Werknemer not found!").build();}
+        if (klus.getWerknemers().contains(werknemer)) {return Response.status(409).entity("Werknemer already added!").build();}
+
+        klus.addWerknemer(werknemer);
+
         return Response.status(200).entity(klus).build();
     }
 
@@ -73,9 +104,12 @@ public class KlusRecource {
     public Response addMateriaal(@PathParam("id") int klusID, AddMateriaalRequest request) {
         String materiaal = request.materiaal;
         Klus klus = Klus.getKlusById(klusID);
+
         if (klus == null) {return Response.status(404).entity("Klus not found!").build();}
         if (klus.getMaterialen().contains(materiaal)) {return Response.status(409).entity("Materiaal already added!").build();}
+
         klus.addMateriaal(materiaal);
+
         return Response.status(200).entity(klus).build();
     }
 }
