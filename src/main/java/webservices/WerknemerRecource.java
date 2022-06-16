@@ -4,6 +4,7 @@ import model.Klus;
 import model.Werknemer;
 import webservices.requests.CreateWerknemerRequest;
 import webservices.requests.DeleteWerknemerRequest;
+import webservices.requests.UpdatePasswordRequest;
 import webservices.requests.UpdateWerknemerRequest;
 
 import javax.ws.rs.*;
@@ -52,9 +53,17 @@ public class WerknemerRecource {
         if (werknemer == null) {return Response.status(404).entity("Werknemer not found").build();}
         werknemer.changeUurloon(request.uurloon);
         werknemer.changeRole(request.role);
-        if (request.password != null) {werknemer.generateNewPassword(request.password);System.out.println("update password");}
         return Response.status(200).entity(werknemer).build();
     }
+
+    @PUT
+    @Path("/updatepassword")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateWerknemer(UpdatePasswordRequest request){
+        //if (request.password != null) {werknemer.generateNewPassword(request.password);System.out.println("update password");}
+        return Response.status(200).build();
+        }
 
     @DELETE
     @Path("/deletewerknemer")

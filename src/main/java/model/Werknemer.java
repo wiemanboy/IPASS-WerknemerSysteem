@@ -1,9 +1,13 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import security.PasswordHashing;
+
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.ArrayList;
 
-public class Werknemer implements Serializable {
+public class Werknemer implements Serializable, Principal {
 
     private String naam;
     private double uurloon;
@@ -59,7 +63,7 @@ public class Werknemer implements Serializable {
         return naam;
     }
 
-    public String getAdminRecht(){
+    public String getRole(){
         return role;
     }
 
@@ -76,6 +80,12 @@ public class Werknemer implements Serializable {
             }
         }
         return equal;
+    }
+
+    @Override
+    @JsonIgnore
+    public String getName() {
+        return null;
     }
 
     public static Werknemer getWerknemerByNaam(String naam) {
