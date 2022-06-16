@@ -7,9 +7,12 @@ import webservices.requests.DeleteWerknemerRequest;
 import webservices.requests.UpdatePasswordRequest;
 import webservices.requests.UpdateWerknemerRequest;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,7 @@ public class WerknemerRecource {
     }
 
     @GET
+    @RolesAllowed("admin")
     @Path("/{naam}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getWerknemer(@PathParam("naam") String werknemerNaam){
@@ -31,7 +35,20 @@ public class WerknemerRecource {
         return Response.status(404).entity("Werknemer not found").build();
     }
 
+    @GET
+    @RolesAllowed({"user","admin"})
+    @Path("/self")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSelf(@Context SecurityContext sc) {
+        if (sc.getUserPrincipal() instanceof Werknemer){
+            Werknemer current = (Werknemer) sc.getUserPrincipal();
+            return Response.ok(current).build();
+        }
+        return Response.status(404).build();
+    }
+
     @POST
+    @RolesAllowed("admin")
     @Path("/createwerknemer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -45,6 +62,7 @@ public class WerknemerRecource {
     }
 
     @PUT
+    @RolesAllowed("admin")
     @Path("/updatewerknemer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -66,6 +84,7 @@ public class WerknemerRecource {
         }
 
     @DELETE
+    @RolesAllowed("admin")
     @Path("/deletewerknemer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

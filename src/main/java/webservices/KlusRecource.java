@@ -6,9 +6,12 @@ import webservices.requests.AddMateriaalRequest;
 import webservices.requests.AddWerknemerRequest;
 import webservices.requests.CreateKlusRequest;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +19,7 @@ import java.util.List;
 public class KlusRecource {
 
     @GET
+    @RolesAllowed({"user","admin"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getKlussen() {
         ArrayList<Klus> klussen = Klus.getAllKlussen();
@@ -23,6 +27,7 @@ public class KlusRecource {
     }
 
     @GET
+    @RolesAllowed({"user","admin"})
     @Path("/klus{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getKlus(@PathParam("id") int klusId) {
@@ -32,6 +37,7 @@ public class KlusRecource {
     }
 
     @POST
+    @RolesAllowed({"user","admin"})
     @Path("/createklus")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -45,6 +51,7 @@ public class KlusRecource {
     }
 
     @POST
+    @RolesAllowed({"user","admin"})
     @Path("/klus{id}/addwerknemer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -59,6 +66,7 @@ public class KlusRecource {
     }
 
     @POST
+    @RolesAllowed({"user","admin"})
     @Path("/klus{id}/addmateriaal")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
