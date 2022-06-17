@@ -1,10 +1,10 @@
 /* style login form */
 #login{size: 10px; align-items: center; font-size: 20px; margin: auto; margin-top: 10%; width: 60%;}
-#login fieldset { height: 330px; border-width: 2px;}
-#login fieldset legend{font-size: 25px;}
-#login fieldset label {margin-top: 500px;}
-#login fieldset label input {width: 90%;}
-#login fieldset div {margin-top: 25px;}
+fieldset { height: 330px; border-width: 2px;}
+legend{font-size: 25px;}
+label {margin-top: 500px;}
+input {width: 90%; display: block;}
+fieldset div {margin-top: 25px;}
 #loginSubmit {width: 70px;}
 
 /* changes based on screen size */
