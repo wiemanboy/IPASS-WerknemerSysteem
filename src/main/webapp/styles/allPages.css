@@ -13,7 +13,7 @@ input:hover, input:focus {font-size: 15px;}
 /* color changes for dark mode */
 @media (prefers-color-scheme: dark) {
     body {background-color: #343434;}
-        input {background-color: #444444;}
+        input, select {background-color: #444444;}
         header, button {background-color: #1B1B1B;}
     * {color: #999999;}
   }

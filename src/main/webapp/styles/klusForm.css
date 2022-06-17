@@ -36,6 +36,9 @@
     margin: 0px;
 }
 
+/* style begindatum input */
+#Begindatum {width: 150px;}
+
 /* add side scroller to table*/
 tbody {overflow-y: scroll; display: block; height: 200px; width: 230px;}
 td {padding-right: 35px;}
