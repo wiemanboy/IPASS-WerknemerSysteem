@@ -7,8 +7,7 @@ function authenticate() {
     const formData = new FormData(document.forms['login']);
     const json = convertFormDataToJSON(formData);
 
-    auth.login(json)
-    .then((data) => console.log(data))
+    console.log(auth.login(json))
 }
 
 function renderLoginForm() {

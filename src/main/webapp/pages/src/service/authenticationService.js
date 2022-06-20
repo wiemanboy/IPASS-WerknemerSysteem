@@ -4,10 +4,12 @@ export default class AuthenticationService {
     }
 
     login(data) {
-        return fetch(`${this.base_url}`, {
+        console.log(data);
+        return fetch(this.baseUrl, {
           method: 'POST',
+          mode: 'no-cors',
           headers: {
-            'Content-Type': 'application/json;charset=utf-8',
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(data),
         })
@@ -15,8 +17,10 @@ export default class AuthenticationService {
             if (!response.ok) {
               throw new Error(response.status);
             }
-            console.log(response);
-            return response;
-          });
+          })
+          .then((json) => {
+            window.sessionStorage.setItem("JWTtoken", json.JWT);
+            console.log(json);
+        });
         }
 }
