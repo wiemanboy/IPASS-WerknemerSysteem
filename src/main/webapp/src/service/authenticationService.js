@@ -12,7 +12,7 @@ export default class AuthenticationService {
           redirect: 'follow'
         };
         
-        return fetch(this.baseUrl, requestOptions)
+        return fetch("https://ipass-werknemersysteem-jarno.herokuapp.com/restservices/authenticate", requestOptions)
           .then(response => {if (response.ok) {return response.json()} else return "wrong username or password"})
           .then(result => window.sessionStorage.setItem("JWTtoken", result.JWT))
           .catch(error => console.log('error', error));
