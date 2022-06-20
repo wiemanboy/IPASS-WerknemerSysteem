@@ -7,8 +7,9 @@ function authenticate() {
     const formData = new FormData(document.forms['login']);
     const json = convertFormDataToJSON(formData);
 
-    console.log(json)
-    console.log(auth.login(json))
+    if (window.sessionStorage != undefined) {
+        window.location.assign('./pages/tablePage.html')
+    }
 }
 
 function renderLoginForm() {
