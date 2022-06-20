@@ -4,23 +4,24 @@ export default class AuthenticationService {
     }
 
     login(data) {
-        console.log(data);
-        return fetch(this.baseUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(response.status);
-            }
-          })
-          .then((json) => {
-            window.sessionStorage.setItem("JWTtoken", json.JWT);
-            console.log(json);
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        
+        var raw = JSON.stringify({
+          "name": "admin",
+          "password": "ADD-"
         });
-        }
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+        
+        return fetch("https://ipass-werknemersysteem-jarno.herokuapp.com/restservices/authenticate", requestOptions)
+          .then(response => response.text())
+          .then(result => window.sessionStorage.setItem("myJWT", result.JWT))
+          .catch(error => console.log('error', error));
+    }
 }

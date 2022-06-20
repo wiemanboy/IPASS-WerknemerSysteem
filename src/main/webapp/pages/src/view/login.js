@@ -7,12 +7,13 @@ function authenticate() {
     const formData = new FormData(document.forms['login']);
     const json = convertFormDataToJSON(formData);
 
+    console.log(json)
     console.log(auth.login(json))
 }
 
 function renderLoginForm() {
     const submit = document.querySelector("#loginSubmit");
-    submit.addEventListener("click", authenticate())
+    submit.addEventListener("click", authenticate)
 }
 
 // ---------- Main Program ---------- //
