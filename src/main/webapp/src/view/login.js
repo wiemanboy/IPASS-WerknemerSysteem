@@ -1,4 +1,4 @@
-import AuthenticationService from "../service/authenticationService";
+import AuthenticationService from "../service/authenticationService.js";
 import { convertFormDataToJSON } from "../utils/loginFormUtils.js"
 
 const auth = new AuthenticationService();
