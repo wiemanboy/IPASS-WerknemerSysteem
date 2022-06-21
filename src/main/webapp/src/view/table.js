@@ -20,8 +20,13 @@ function addTableRow(klus) {
     const rowNode = document.querySelector("#tableTemplate").content.cloneNode(true);
     const tableData = rowNode.querySelectorAll("td");
 
+    console.log(rowNode);
+    console.log(tableData);
+
     const table = document.querySelector("tbody");
     rowNode.querySelector('tr').setAttribute('id', klus.id);
+
+    console.log(table);
 
 
     tableData[0].textContent = klus.klant;
@@ -29,6 +34,8 @@ function addTableRow(klus) {
     tableData[2].textContent = klus.begindatum;
 
     table.appendChild(rowNode);
+
+    console.log(table);
 }
 
 // ---------- Main Program ---------- //
