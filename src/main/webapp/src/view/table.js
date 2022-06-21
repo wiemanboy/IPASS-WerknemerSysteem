@@ -11,7 +11,9 @@ function deleteTableData() {}
 function renderKlussen() {
     klusServ.getKlussen()
     .then(response => {if (response.ok) {return response.json();} else throw "error"})
-    .then(result => Object.entries(result).forEach(element => addTableRow(element)));
+    .then((data) => {
+        Object.entries(data).forEach((element) => addTableRow(element[1]));
+      });
 }
 
 function renderWerknemers() {}
