@@ -32,6 +32,7 @@ function addKlussen(klus) {
     rowNode.querySelector('tr').setAttribute('id', klus.id);
     if (klus.id % 2 == 0) {rowNode.querySelector('tr').setAttribute('class', "even");}
 
+    console.log(klus.begindatum);
     const begindatum = "" + klus.begindatum;
 
     // set table data
@@ -73,8 +74,8 @@ function addWerknemers(werknemer) {
         
         // set table data
         tableData[0].textContent = werknemer.naam;
-        tableData[1].textContent = werknemer.uurloon;
-        tableData[2].textContent = werknemer.role;
+        tableData[1].textContent = "€" + werknemer.uurloon + " / uur";
+        tableData[2].textContent = "role: " + werknemer.role;
     
         // add table data
         table.appendChild(rowNode);
