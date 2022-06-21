@@ -10,6 +10,6 @@ export default class KlusService {
               headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken")}
             }
             
-            return fetch("https://ipass-werknemersysteem-jarno.herokuapp.com/restservices/klussen", requestOptions)
+            return fetch(this.baseUrl, requestOptions)
         }
     }

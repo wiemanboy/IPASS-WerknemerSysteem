@@ -1,24 +1,26 @@
 import KlusService from "../service/klusService.js";
+import WerknemerService from "../service/werknemerService.js"
 
 const klusServ = new KlusService();
+const werknemerServ = new WerknemerService();
 
 function renderTable() {
     renderKlussen();
+    renderWerknemers();
 }
 
 function deleteTableData() {}
 
 function renderKlussen() {
+    // get klussen
     klusServ.getKlussen()
     .then(response => {if (response.ok) {return response.json();} else throw "error"})
     .then((data) => {
-        Object.entries(data).forEach((element) => addTableRow(element[1]));
+        Object.entries(data).forEach((element) => addKlussen(element[1]));
       });
 }
 
-function renderWerknemers() {}
-
-function addTableRow(klus) {
+function addKlussen(klus) {
     // get template data
     const rowNode = document.querySelector("#tableTemplate").content.cloneNode(true);
     const tableData = rowNode.querySelectorAll("td");
@@ -37,9 +39,57 @@ function addTableRow(klus) {
     tableData[1].textContent = klus.adres;
     tableData[2].textContent = begindatum;
 
+    // add event listners
+    tableData[0].addEventListener('click', );
+    tableData[1].addEventListener('click', );
+    tableData[2].addEventListener('click', );
+
     // add table data
     table.appendChild(rowNode);
 }
+
+function renderWerknemers() {
+        // get werknemers
+        werknemerServ.getWerknemers()
+        .then(response => {if (response.ok) {return response.json();} else throw "error"})
+        .then((data) => {
+            Object.entries(data).forEach((element) => addWerknemers(element[1]));
+          });
+}
+
+var werknemerEven = true;
+
+function addWerknemers(werknemer) {
+        // get template data    
+        const rowNode = document.querySelector("#tableTemplate").content.cloneNode(true);
+        const tableData = rowNode.querySelectorAll("td");
+    
+        // get table
+        const table = document.querySelector("tbody");
+    
+        // set id
+        rowNode.querySelector('tr').setAttribute('id', werknemer.naam);
+
+        if (werknemerEven === true) {
+            rowNode.querySelector('tr').setAttribute('class', "even");
+            werknemerEven = false;
+        }
+        else {werknemerEven = true};
+        
+        // set table data
+        tableData[0].textContent = werknemer.naam;
+        tableData[1].textContent = werknemer.uurloon;
+        tableData[2].textContent = werknemer.role;
+    
+        // add event listners
+        tableData[0].addEventListener('click', );
+        tableData[1].addEventListener('click', );
+        tableData[2].addEventListener('click', );
+    
+        // add table data
+        table.appendChild(rowNode);
+    }
+
 
 // ---------- Main Program ---------- //
 
