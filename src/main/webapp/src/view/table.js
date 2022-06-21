@@ -10,7 +10,7 @@ function renderTablePage() {
 
     // add eventlistner for switching between klussen and werknemers table
     document.querySelector("#renderKlussenBtn").addEventListener("click", renderKlussen);
-    document.querySelector("#renderWerknemerBtn").addEventListener("click", renderWerknemers);
+    document.querySelector("#renderWerknemersBtn").addEventListener("click", renderWerknemers);
 }
 
 function deleteTableData() {
