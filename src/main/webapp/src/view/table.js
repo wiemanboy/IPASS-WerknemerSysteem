@@ -4,14 +4,29 @@ import WerknemerService from "../service/werknemerService.js"
 const klusServ = new KlusService();
 const werknemerServ = new WerknemerService();
 
-function renderTable() {
+function renderTablePage() {
+    // start with klussen table
     renderKlussen();
-    renderWerknemers();
+
+    // add eventlistner for switching between klussen and werknemers table
+    document.querySelector("#renderKlussenBtn").addEventListener("click", renderKlussen);
+    document.querySelector("#renderWerknemerBtn").addEventListener("click", renderWerknemers);
 }
 
-function deleteTableData() {}
+function deleteTableData() {
+    const table = document.querySelector("tbody");
+    const tableRow = table.querySelectorAll("tr");
+
+    table.innerHTML = "";
+}
 
 function renderKlussen() {
+    // edit header
+    document.querySelector("#tablePageHead").textContent = klussen;
+
+    // empty table
+    deleteTableData();
+
     // get klussen
     klusServ.getKlussen()
     .then(response => {if (response.ok) {return response.json();} else throw "error"})
@@ -42,12 +57,18 @@ function addKlussen(klus) {
 }
 
 function renderWerknemers() {
-        // get werknemers
-        werknemerServ.getWerknemers()
-        .then(response => {if (response.ok) {return response.json();} else throw "error"})
-        .then((data) => {
-            Object.entries(data).forEach((element) => addWerknemers(element[1]));
-          });
+    // edit header
+    document.querySelector("#tablePageHead").textContent = werknemers;
+
+    // empty table
+    deleteTableData();
+
+    // get werknemers
+    werknemerServ.getWerknemers()
+    .then(response => {if (response.ok) {return response.json();} else throw "error"})
+    .then((data) => {
+        Object.entries(data).forEach((element) => addWerknemers(element[1]));
+      });
 }
 
 var werknemerEven = true;
@@ -71,7 +92,7 @@ function addWerknemers(werknemer) {
         
         // set table data
         tableData[0].textContent = werknemer.naam;
-        tableData[1].textContent = "€" + werknemer.uurloon + " / uur";
+        tableData[1].textContent = "€ " + werknemer.uurloon + " / uur";
         tableData[2].textContent = "role: " + werknemer.role;
     
         // add table data
@@ -81,4 +102,4 @@ function addWerknemers(werknemer) {
 
 // ---------- Main Program ---------- //
 
-renderTable()
+renderTablePage()
