@@ -20,7 +20,9 @@ function addTableRow(klus) {
     const rowNode = document.querySelector("#tableTemplate").content.cloneNode(true);
     const tableData = rowNode.querySelectorAll("td");
 
-    document.querySelector("tbody");
+    const table = document.querySelector("tbody");
+    rowNode.querySelector('tr').setAttribute('id', klus.id);
+
 
     tableData[0].textContent = klus.klant;
     tableData[1].textContent = klus.adres;
