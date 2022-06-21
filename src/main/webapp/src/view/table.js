@@ -32,13 +32,10 @@ function addKlussen(klus) {
     rowNode.querySelector('tr').setAttribute('id', klus.id);
     if (klus.id % 2 == 0) {rowNode.querySelector('tr').setAttribute('class', "even");}
 
-    console.log(klus.begindatum);
-    const begindatum = "" + klus.begindatum;
-
     // set table data
     tableData[0].textContent = klus.klant;
     tableData[1].textContent = klus.adres;
-    tableData[2].textContent = begindatum;
+    tableData[2].textContent = klus.beginDatum;
 
     // add table data
     table.appendChild(rowNode);
