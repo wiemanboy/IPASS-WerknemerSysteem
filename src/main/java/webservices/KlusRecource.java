@@ -25,7 +25,6 @@ public class KlusRecource {
     public Response getKlussen() {
         List<Klus> klussenCopy = new ArrayList<Klus>(Klus.getAllKlussen());
         klussenCopy.remove(0);
-
         return Response.ok(klussenCopy).build();
     }
 
