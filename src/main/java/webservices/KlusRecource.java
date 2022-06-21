@@ -23,9 +23,10 @@ public class KlusRecource {
     @RolesAllowed({"user","admin"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getKlussen() {
-        ArrayList<Klus> klussen = Klus.getAllKlussen();
+        List<Klus> klussenCopy = new ArrayList<Klus>(Klus.getAllKlussen());
+        klussenCopy.remove(0);
 
-        return Response.ok(klussen).build();
+        return Response.ok(klussenCopy).build();
     }
 
     @GET
