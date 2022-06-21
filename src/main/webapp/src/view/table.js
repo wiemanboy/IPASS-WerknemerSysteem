@@ -22,15 +22,10 @@ function addTableRow(klus) {
     const rowNode = document.querySelector("#tableTemplate").content.cloneNode(true);
     const tableData = rowNode.querySelectorAll("td");
 
-    console.log(klus);
-    console.log(rowNode);
-    console.log(tableData);
-
     const table = document.querySelector("tbody");
     rowNode.querySelector('tr').setAttribute('id', klus.id);
 
-    console.log(table);
-
+    if (klus.id % 2 == 0) {rowNode.querySelector('tr').setAttribute('class', "even");}
 
     tableData[0].textContent = klus.klant;
     tableData[1].textContent = klus.adres;
