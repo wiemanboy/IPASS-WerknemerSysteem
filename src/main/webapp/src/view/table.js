@@ -22,7 +22,7 @@ function deleteTableData() {
 
 function renderKlussen() {
     // edit header
-    document.querySelector("#tablePageHead").textContent = klussen;
+    document.querySelector("#tablePageHead").textContent = "klussen";
 
     // empty table
     deleteTableData();
@@ -58,7 +58,7 @@ function addKlussen(klus) {
 
 function renderWerknemers() {
     // edit header
-    document.querySelector("#tablePageHead").textContent = werknemers;
+    document.querySelector("#tablePageHead").textContent = "werknemers";
 
     // empty table
     deleteTableData();
