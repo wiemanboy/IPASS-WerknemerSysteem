@@ -39,11 +39,6 @@ function addKlussen(klus) {
     tableData[1].textContent = klus.adres;
     tableData[2].textContent = begindatum;
 
-    // add event listners
-    tableData[0].addEventListener('click', );
-    tableData[1].addEventListener('click', );
-    tableData[2].addEventListener('click', );
-
     // add table data
     table.appendChild(rowNode);
 }
@@ -80,11 +75,6 @@ function addWerknemers(werknemer) {
         tableData[0].textContent = werknemer.naam;
         tableData[1].textContent = werknemer.uurloon;
         tableData[2].textContent = werknemer.role;
-    
-        // add event listners
-        tableData[0].addEventListener('click', );
-        tableData[1].addEventListener('click', );
-        tableData[2].addEventListener('click', );
     
         // add table data
         table.appendChild(rowNode);
