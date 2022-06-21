@@ -26,6 +26,7 @@ function addTableRow(klus) {
     tableData[1].textContent = klus.adres;
     tableData[2].textContent = klus.begindatum;
 
+    table.appendChild(rowNode);
 }
 
 // ---------- Main Program ---------- //
