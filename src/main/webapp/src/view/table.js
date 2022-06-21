@@ -22,8 +22,6 @@ function addTableRow(klus) {
 
     document.querySelector("tbody");
 
-    rowNode.querySelector("tr").setAtrrribute("id", klus.id);
-
     tableData[0].textContent = klus.klant;
     tableData[1].textContent = klus.adres;
     tableData[2].textContent = klus.begindatum;
