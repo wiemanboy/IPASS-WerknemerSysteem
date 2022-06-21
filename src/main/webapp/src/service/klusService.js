@@ -3,7 +3,7 @@ export default class KlusService {
         this.baseUrl = "https://ipass-werknemersysteem-jarno.herokuapp.com/restservices/klussen"
     }
 
-        getKlussen(data) {           
+        getKlussen() {           
             const requestOptions = {
               method: 'GET',
               mode: "same-origin",
@@ -11,7 +11,5 @@ export default class KlusService {
             }
             
             return fetch("https://ipass-werknemersysteem-jarno.herokuapp.com/restservices/klussen", requestOptions)
-              .then(response => {if (response.ok) {return response.json();} else throw "error"})
-              .then(result => console.log(result))
         }
     }
