@@ -9,7 +9,7 @@ function renderTable() {
 function deleteTableData() {}
 
 function renderKlussen() {
-    klusServ.getKlussen
+    klusServ.getKlussen()
     .then(response => {if (response.ok) {return response.json();} else throw "error"})
     .then(result => console.log(result));
 }
