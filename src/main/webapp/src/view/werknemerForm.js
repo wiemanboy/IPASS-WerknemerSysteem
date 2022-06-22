@@ -1,4 +1,4 @@
-import { getIdFromUrl, convertWerknemerDataToJSON, checkPassword } from "../utils/formUtils.js";
+import { getIdFromUrl, convertWerknemerDataToJSON, checkPassword, deleteWerknemerJson } from "../utils/formUtils.js";
 import WerknemerService from "../service/werknemerService.js";
 
 const name = getIdFromUrl();
@@ -65,9 +65,11 @@ function edit() {
     editBtn.style.visibility = "hidden";
     editBtn.removeEventListener("click", edit);
 
-    // enable inputs
-    document.getElementById("uurloon").disabled = false;
-    document.getElementById("adminRecht").disabled = false;
+    if (name !== "self") {
+        // enable inputs
+        document.getElementById("uurloon").disabled = false;
+        document.getElementById("adminRecht").disabled = false;
+    }
 
     //  show buttons
     saveBtn.style.visibility = "visible";
@@ -89,13 +91,23 @@ function create() {
     // convert werknemer data to json
     const werknemerJson = convertWerknemerDataToJSON(inputNameValue, uurloonValue, adminValue);
 
-    // update werknemer
+    // create werknemer
     werknemerServ.createWerknemer(werknemerJson)
-    .then(response => {if (response.ok) {return response.json();} else throw "Error"});
+    .then(response => {if (response.ok) {window.location.assign('./pages/tablePage.html'); return response.json();} else throw "Error"});
 
 }
 
-function deleteWerknemer() {}
+function deleteWerknemer() {
+        // get werknemer data
+        const inputNameValue = document.getElementById("name").value;
+        
+        // convert werknemer data to json
+        const werknemerJson = convertWerknemerDataToJSON(inputNameValue);
+    
+        // delete werknemer
+        werknemerServ.deleteWerknemer(werknemerJson)
+        .then(response => {if (response.ok) {window.location.assign('./pages/tablePage.html'); return response.json();} else throw "Error"});
+}
 
 function update() {
     // get werknemer data
@@ -114,14 +126,18 @@ function update() {
     const passwordJson = checkPassword(password, confirmPassword);
 
     // update werknemer
+    let updateOk = false;
     werknemerServ.updateWerknemer(werknemerJson)
-    .then(response => {if (response.ok) {return response.json();} else throw "Error"});
+    .then(response => {if (response.ok) {updateOk = true; return response.json();} else {updateOk = false; throw "Error"}});
 
     // update password
+    let passwordOk = false;
     if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
         werknemerServ.updatePassword(passwordJson)
-        .then(response => {if (response.ok) {return true} else throw "Error"});
+        .then(response => {if (response.ok) {passwordOk = true; return true} else {passwordOk = false; throw "Error"}});
     }
+
+    if (updateOk === true && passwordOk === true) {window.location.assign('./pages/tablePage.html');}
 }
 
 // ---------- Main Program ---------- //
