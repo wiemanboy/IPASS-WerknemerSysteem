@@ -85,7 +85,6 @@ public class WerknemerRecource {
     @RolesAllowed({"user","admin"})
     @Path("/updatepassword")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response updateWerknemer(@Context SecurityContext sc, UpdatePasswordRequest request){
         // get self
         Werknemer current = null;
