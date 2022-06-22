@@ -36,9 +36,18 @@ function renderWerknemerForm() {
             werknemer = werknemerServ.getWerknemer(name);
         };
 
+        // fill in inputs
         werknemer    
         .then(response => {if (response.ok) {return response.json();} else throw "error"})
-        .then((data) => {console.log(data);});
+        .then((data) => {
+            console.log(data);
+            let adminValue = false;
+            if (data.role === "admin") {adminValue = true;}
+
+            inputName.value = data.naam;
+            uurloon.value = data.uurloon;
+            admin.checked = adminValue;
+        });
 
         // disable inputs
         inputName.disabled = true;
@@ -58,6 +67,7 @@ function edit() {
     editBtn.style.visibility = "hidden";
     editBtn.removeEventListener("click", edit);
 
+    // enable inputs
     const inputName = document.getElementById("name").disabled = false;
     const uurloon = document.getElementById("uurloon").disabled = false;
     const admin = document.getElementById("adminRecht").disabled = false;
