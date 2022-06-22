@@ -1,5 +1,5 @@
 import KlusService from "../service/klusService.js";
-import WerknemerService from "../service/werknemerService.js"
+import WerknemerService from "../service/werknemerService.js";
 
 const klusServ = new KlusService();
 const werknemerServ = new WerknemerService();
