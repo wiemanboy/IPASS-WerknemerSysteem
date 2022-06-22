@@ -15,7 +15,12 @@ function renderTablePage() {
 
 function deleteTableData() {
     const table = document.querySelector("tbody");
-    const tableRow = table.querySelectorAll("tr");
+    const tableData = table.querySelectorAll("td");
+
+    // remove event listners
+    tableData[0].removeEventListener("click", function(){});
+    tableData[1].removeEventListener("click", function(){});
+    tableData[2].removeEventListener("click", function(){});
 
     table.innerHTML = "";
 }
@@ -23,12 +28,6 @@ function deleteTableData() {
 function renderKlussen() {
     // edit header
     document.querySelector("#tablePageHead").textContent = "klussen";
-
-    // remove event listners
-    tableData[0].removeEventListener("click", function(){});
-    tableData[1].removeEventListener("click", function(){});
-    tableData[2].removeEventListener("click", function(){});
-
 
     // empty table
     deleteTableData();
