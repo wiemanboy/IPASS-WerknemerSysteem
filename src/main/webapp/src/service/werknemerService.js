@@ -37,7 +37,7 @@ export default class WerknemerService {
         const requestOptions = {
           method: 'POST',
           mode: "same-origin",
-          headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken")},
+          headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken"), 'Content-Type': 'application/json;charset=utf-8',},
           body: JSON.stringify(data),
         };
         
@@ -48,7 +48,7 @@ export default class WerknemerService {
         const requestOptions = {
           method: 'PUT',
           mode: "same-origin",
-          headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken")},
+          headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken"), 'Content-Type': 'application/json;charset=utf-8',},
           body: JSON.stringify(data),
         };
         
@@ -59,7 +59,7 @@ export default class WerknemerService {
         const requestOptions = {
           method: 'PUT',
           mode: "same-origin",
-          headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken")},
+          headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken"), 'Content-Type': 'application/json;charset=utf-8',},
           body: JSON.stringify(data),
         };
         
@@ -70,7 +70,7 @@ export default class WerknemerService {
         const requestOptions = {
           method: 'DELETE',
           mode: "same-origin",
-          headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken")},
+          headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken"), 'Content-Type': 'application/json;charset=utf-8',},
           body: JSON.stringify(data),
         };
         
