@@ -17,8 +17,6 @@ function deleteTableData() {
     const table = document.querySelector("tbody");
     const tableData = document.querySelectorAll("td");
 
-    console.log(tableData);
-
     // remove event listners
     tableData.forEach((element) => element.removeEventListener("click", function(){}));
 

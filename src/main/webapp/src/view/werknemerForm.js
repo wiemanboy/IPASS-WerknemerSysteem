@@ -1,4 +1,4 @@
-import { getIdFromUrl, convertWerknemerDataToJSON, checkPassword } from "../utils/formUtils.js";
+import { getIdFromUrl, convertWerknemerDataToJSON, checkPassword, deleteWerknemerJson } from "../utils/formUtils.js";
 import WerknemerService from "../service/werknemerService.js";
 
 const name = getIdFromUrl();
@@ -21,8 +21,6 @@ function renderWerknemerForm() {
     const uurloon = document.getElementById("uurloon");
     const admin = document.getElementById("adminRecht");
     
-    console.log(name);
-
     if (name != null) {
          // edit werknemer
         editBtn.addEventListener("click", edit);
@@ -40,7 +38,6 @@ function renderWerknemerForm() {
         werknemer    
         .then(response => {if (response.ok) {return response.json();} else throw "error"})
         .then((data) => {
-            console.log(data);
             let adminValue = false;
             if (data.role === "admin") {adminValue = true;}
 
@@ -58,6 +55,7 @@ function renderWerknemerForm() {
         // create werknemer
         editBtn.style.visibility = "hidden";
         saveBtn.style.visibility = "visible";
+        saveBtn.addEventListener("click", create);
     }
 };
 
@@ -67,9 +65,12 @@ function edit() {
     editBtn.style.visibility = "hidden";
     editBtn.removeEventListener("click", edit);
 
-    // enable inputs
-    const uurloon = document.getElementById("uurloon").disabled = false;
-    const admin = document.getElementById("adminRecht").disabled = false;
+    if (name !== "self") {
+        // enable inputs
+        document.getElementById("uurloon").disabled = false;
+        document.getElementById("adminRecht").disabled = false;
+        deleteBtn.addEventListener("click", remove);
+    }
 
     //  show buttons
     saveBtn.style.visibility = "visible";
@@ -80,6 +81,33 @@ function edit() {
     }
 
     saveBtn.addEventListener("click", update);
+}
+
+function create() {
+    // get werknemer data
+    const inputNameValue = document.getElementById("name").value;
+    const uurloonValue = document.getElementById("uurloon").value;
+    const adminValue = document.getElementById("adminRecht").checked;
+    
+    // convert werknemer data to json
+    const werknemerJson = convertWerknemerDataToJSON(inputNameValue, uurloonValue, adminValue);
+
+    // create werknemer
+    werknemerServ.createWerknemer(werknemerJson)
+    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"});
+
+}
+
+function remove() {
+        // get werknemer data
+        const inputNameValue = document.getElementById("name").value;
+        
+        // convert werknemer data to json
+        const werknemerJson = deleteWerknemerJson(inputNameValue);
+    
+        // delete werknemer
+        werknemerServ.deleteWerknemer(werknemerJson)
+        .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"});
 }
 
 function update() {
@@ -100,13 +128,19 @@ function update() {
 
     // update werknemer
     werknemerServ.updateWerknemer(werknemerJson)
-    .then(response => {if (response.ok) {return response.json();} else throw "Error"});
-
-    // update password
-    if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
+    .then(response => {if (response.ok) {
+        
+        // update password
+        if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
         werknemerServ.updatePassword(passwordJson)
-        .then(response => {if (response.ok) {return response.json();} else throw "Error"});
-    }
+        .then(response => {if (response.ok) {return true} else {throw "Error"}});
+
+        // redirect to table page
+        window.location.assign('/pages/tablePage.html')
+        return response.json();
+        }
+    } 
+    else {throw "Error"}});
 }
 
 // ---------- Main Program ---------- //

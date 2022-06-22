@@ -37,8 +37,17 @@ function convertWerknemerDataToJSON(name, uurloon, admin) {
     return jsonObject;
   }
 
+  function deleteWerknemerJson(name){
+        // make jsonObject
+        const jsonObject = {"naam": ""};
+        jsonObject.naam = String(name);
+    
+        return jsonObject;
+  }
+
 export {
     getIdFromUrl,
     convertWerknemerDataToJSON,
-    checkPassword
+    checkPassword,
+    deleteWerknemerJson
   };
