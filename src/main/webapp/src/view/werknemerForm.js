@@ -94,7 +94,7 @@ function create() {
 
     // create werknemer
     werknemerServ.createWerknemer(werknemerJson)
-    .then(response => {if (response.ok) {window.location.assign('./pages/tablePage.html'); return response.json();} else throw "Error"});
+    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"});
 
 }
 
@@ -107,7 +107,7 @@ function remove() {
     
         // delete werknemer
         werknemerServ.deleteWerknemer(werknemerJson)
-        .then(response => {if (response.ok) {window.location.assign('./pages/tablePage.html'); return response.json();} else throw "Error"});
+        .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"});
 }
 
 function update() {
@@ -127,18 +127,20 @@ function update() {
     const passwordJson = checkPassword(password, confirmPassword);
 
     // update werknemer
-    let updateOk = false;
     werknemerServ.updateWerknemer(werknemerJson)
-    .then(response => {if (response.ok) {updateOk = true; return response.json();} else {updateOk = false; throw "Error"}});
-
-    // update password
-    let passwordOk = true;
-    if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
+    .then(response => {if (response.ok) {
+        
+        // update password
+        if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
         werknemerServ.updatePassword(passwordJson)
-        .then(response => {if (response.ok) {passwordOk = true; return true} else {passwordOk = false; throw "Error"}});
-    }
+        .then(response => {if (response.ok) {return true} else {throw "Error"}});
 
-    if (updateOk === true && passwordOk === true) {window.location.assign('./pages/tablePage.html');}
+        // redirect to table page
+        window.location.assign('/pages/tablePage.html')
+        return response.json();
+        }
+    } 
+    else {throw "Error"}});
 }
 
 // ---------- Main Program ---------- //
