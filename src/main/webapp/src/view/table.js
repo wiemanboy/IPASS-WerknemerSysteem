@@ -24,6 +24,12 @@ function renderKlussen() {
     // edit header
     document.querySelector("#tablePageHead").textContent = "klussen";
 
+    // remove event listners
+    tableData[0].removeEventListener("click", function(){});
+    tableData[1].removeEventListener("click", function(){});
+    tableData[2].removeEventListener("click", function(){});
+
+
     // empty table
     deleteTableData();
 
@@ -51,6 +57,11 @@ function addKlussen(klus) {
     tableData[0].textContent = klus.klant;
     tableData[1].textContent = klus.adres;
     tableData[2].textContent = klus.beginDatum;
+
+    //add eventlistners
+    tableData[0].addEventListener("click", function(){showSubject(klus.id)});
+    tableData[1].addEventListener("click", function(){showSubject(klus.id)});
+    tableData[2].addEventListener("click", function(){showSubject(klus.id)});
 
     // add table data
     table.appendChild(rowNode);
@@ -94,10 +105,17 @@ function addWerknemers(werknemer) {
         tableData[0].textContent = werknemer.naam;
         tableData[1].textContent = "€ " + werknemer.uurloon + " / uur";
         tableData[2].textContent = "role: " + werknemer.role;
-    
+
+        //add eventlistners
+        tableData[0].addEventListener("click", function(){showSubject(werknemer.naam)});
+        tableData[1].addEventListener("click", function(){showSubject(werknemer.naam)});
+        tableData[2].addEventListener("click", function(){showSubject(werknemer.naam)});
+
         // add table data
         table.appendChild(rowNode);
     }
+
+    function showSubject(id) {}
 
 
 // ---------- Main Program ---------- //
