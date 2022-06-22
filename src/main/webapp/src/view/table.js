@@ -59,9 +59,9 @@ function addKlussen(klus) {
     tableData[2].textContent = klus.beginDatum;
 
     //add eventlistners
-    tableData[0].addEventListener("click", function(){showSubject(klus.id)});
-    tableData[1].addEventListener("click", function(){showSubject(klus.id)});
-    tableData[2].addEventListener("click", function(){showSubject(klus.id)});
+    tableData[0].addEventListener("click", function(){showKlus(klus.id)});
+    tableData[1].addEventListener("click", function(){showKlus(klus.id)});
+    tableData[2].addEventListener("click", function(){showKlus(klus.id)});
 
     // add table data
     table.appendChild(rowNode);
@@ -107,15 +107,21 @@ function addWerknemers(werknemer) {
         tableData[2].textContent = "role: " + werknemer.role;
 
         //add eventlistners
-        tableData[0].addEventListener("click", function(){showSubject(werknemer.naam)});
-        tableData[1].addEventListener("click", function(){showSubject(werknemer.naam)});
-        tableData[2].addEventListener("click", function(){showSubject(werknemer.naam)});
+        tableData[0].addEventListener("click", function(){showWerknemer(werknemer.naam)});
+        tableData[1].addEventListener("click", function(){showWerknemer(werknemer.naam)});
+        tableData[2].addEventListener("click", function(){showWerknemer(werknemer.naam)});
 
         // add table data
         table.appendChild(rowNode);
     }
 
-    function showSubject(id) {}
+    function showWerknemer(name) {
+        window.location.assign("./pages/werknemerPage.html?id=" + name);
+    }
+
+    function showKlus(id) {
+        window.location.assign("./pages/klusPage.html?id=" + id);
+    }
 
 
 // ---------- Main Program ---------- //
