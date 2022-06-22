@@ -70,6 +70,15 @@ public class Klus implements Serializable {
         return null;
     }
 
+    public void removeWerknemer(Werknemer werknemer) {
+        // get de werkbon van een specifieke werknemer
+        for (Werkbon werkbon : getWerknemers()) {
+            if (werkbon.getWerknemer().equals(werknemer)) {
+                werknemers.remove(werkbon);
+            }
+        }
+    }
+
     public ArrayList<String> getMaterialen() {
         return materialen;
     }

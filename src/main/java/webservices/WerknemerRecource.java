@@ -1,5 +1,6 @@
 package webservices;
 
+import model.Klus;
 import model.Werknemer;
 import webservices.requests.CreateWerknemerRequest;
 import webservices.requests.DeleteWerknemerRequest;
@@ -109,6 +110,7 @@ public class WerknemerRecource {
         if (werknemer == null) {return Response.status(404).entity("Werknemer not found").build();}
 
         Werknemer.removeWerknemer(werknemer);
+        Klus.getKlusById(1).removeWerknemer(werknemer);
 
         return Response.status(200).entity(werknemer).build();
     }
