@@ -103,7 +103,7 @@ function remove() {
         const inputNameValue = document.getElementById("name").value;
         
         // convert werknemer data to json
-        const werknemerJson = convertWerknemerDataToJSON(inputNameValue);
+        const werknemerJson = deleteWerknemerJson(inputNameValue);
     
         // delete werknemer
         werknemerServ.deleteWerknemer(werknemerJson)
@@ -132,7 +132,7 @@ function update() {
     .then(response => {if (response.ok) {updateOk = true; return response.json();} else {updateOk = false; throw "Error"}});
 
     // update password
-    let passwordOk = false;
+    let passwordOk = true;
     if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
         werknemerServ.updatePassword(passwordJson)
         .then(response => {if (response.ok) {passwordOk = true; return true} else {passwordOk = false; throw "Error"}});
