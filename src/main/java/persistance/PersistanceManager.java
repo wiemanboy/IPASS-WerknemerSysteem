@@ -45,7 +45,11 @@ public class PersistanceManager implements ServletContextListener {
                         }
                     }
 
-                    System.out.println(Klus.getAllKlussen());
+                    for (Klus k : Klus.getAllKlussen()) {
+                        for (Werkbon w : k.getWerknemers()) {
+                            System.out.println(w.getWerknemer());
+                        }
+                    }
 
                     baos.close();
                     bais.close();
