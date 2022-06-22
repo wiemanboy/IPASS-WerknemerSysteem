@@ -15,12 +15,14 @@ function renderTablePage() {
 
 function deleteTableData() {
     const table = document.querySelector("tbody");
-    const tableData = table.querySelectorAll("tr");
+    const tableData = document.querySelectorAll("td");
+
+    console.log(tableData);
 
     // remove event listners
-    tableData[0].removeEventListener("click", function(){});
-    tableData[1].removeEventListener("click", function(){});
-    tableData[2].removeEventListener("click", function(){});
+    //tableData[0].removeEventListener("click", function(){});
+    //tableData[1].removeEventListener("click", function(){});
+    //tableData[2].removeEventListener("click", function(){});
 
     table.innerHTML = "";
 }
