@@ -26,12 +26,23 @@ function deleteTableData() {
     table.innerHTML = "";
 }
 
+function renderAddWerknemerBtn() {
+    window.location.assign("/pages/werknemerPage.html");
+}
+
+function renderAddKlusBtn() {
+    window.location.assign("/pages/klusPage.html");
+}
+
 function renderKlussen() {
     // edit header
     document.querySelector("#tablePageHead").textContent = "klussen";
 
     // empty table
     deleteTableData();
+
+    // add ecentlistner for add button
+    document.querySelector("#addButton").addEventListener("click", renderAddKlusBtn)
 
     // get klussen
     klusServ.getKlussen()
@@ -73,6 +84,9 @@ function renderWerknemers() {
 
     // empty table
     deleteTableData();
+
+    // add ecentlistner for add button
+    document.querySelector("#addButton").addEventListener("click", renderAddWerknemerBtn)
 
     // get werknemers
     werknemerServ.getWerknemers()
