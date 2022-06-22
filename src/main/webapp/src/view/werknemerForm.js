@@ -69,6 +69,7 @@ function edit() {
         // enable inputs
         document.getElementById("uurloon").disabled = false;
         document.getElementById("adminRecht").disabled = false;
+        deleteBtn.addEventListener("click", remove);
     }
 
     //  show buttons
@@ -97,7 +98,7 @@ function create() {
 
 }
 
-function deleteWerknemer() {
+function remove() {
         // get werknemer data
         const inputNameValue = document.getElementById("name").value;
         
