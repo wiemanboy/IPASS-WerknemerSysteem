@@ -21,8 +21,6 @@ function renderWerknemerForm() {
     const uurloon = document.getElementById("uurloon");
     const admin = document.getElementById("adminRecht");
     
-    console.log(name);
-
     if (name != null) {
          // edit werknemer
         editBtn.addEventListener("click", edit);
@@ -40,7 +38,6 @@ function renderWerknemerForm() {
         werknemer    
         .then(response => {if (response.ok) {return response.json();} else throw "error"})
         .then((data) => {
-            console.log(data);
             let adminValue = false;
             if (data.role === "admin") {adminValue = true;}
 
@@ -58,6 +55,7 @@ function renderWerknemerForm() {
         // create werknemer
         editBtn.style.visibility = "hidden";
         saveBtn.style.visibility = "visible";
+        saveBtn.addEventListener("click", create);
     }
 };
 
@@ -68,8 +66,8 @@ function edit() {
     editBtn.removeEventListener("click", edit);
 
     // enable inputs
-    const uurloon = document.getElementById("uurloon").disabled = false;
-    const admin = document.getElementById("adminRecht").disabled = false;
+    document.getElementById("uurloon").disabled = false;
+    document.getElementById("adminRecht").disabled = false;
 
     //  show buttons
     saveBtn.style.visibility = "visible";
@@ -81,6 +79,23 @@ function edit() {
 
     saveBtn.addEventListener("click", update);
 }
+
+function create() {
+    // get werknemer data
+    const inputNameValue = document.getElementById("name").value;
+    const uurloonValue = document.getElementById("uurloon").value;
+    const adminValue = document.getElementById("adminRecht").checked;
+    
+    // convert werknemer data to json
+    const werknemerJson = convertWerknemerDataToJSON(inputNameValue, uurloonValue, adminValue);
+
+    // update werknemer
+    werknemerServ.createWerknemer(werknemerJson)
+    .then(response => {if (response.ok) {return response.json();} else throw "Error"});
+
+}
+
+function deleteWerknemer() {}
 
 function update() {
     // get werknemer data
@@ -105,7 +120,7 @@ function update() {
     // update password
     if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
         werknemerServ.updatePassword(passwordJson)
-        .then(response => {if (response.ok) {return response.json();} else throw "Error"});
+        .then(response => {if (response.ok) {return true} else throw "Error"});
     }
 }
 
