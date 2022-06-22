@@ -11,7 +11,7 @@ function renderWerknemerForm() {
     saveBtn.style.visibility = "hidden";
     deleteBtn.style.visibility = "hidden";
     passwordForm.style.visibility = "hidden";
-    console.log(name);
+    
     if (name != null) {editBtn.addEventListener("click", edit)}
     else {
         editBtn.style.visibility = "hidden";

@@ -27,11 +27,11 @@ function deleteTableData() {
 }
 
 function renderAddWerknemerBtn() {
-    window.location.assign("/pages/werknemerPage.html");
+    window.location.assign("/pages/werknemerPage.html?");
 }
 
 function renderAddKlusBtn() {
-    window.location.assign("/pages/klusPage.html");
+    window.location.assign("/pages/klusPage.html?");
 }
 
 function renderKlussen() {
