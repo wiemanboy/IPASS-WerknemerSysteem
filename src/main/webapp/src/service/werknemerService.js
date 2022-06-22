@@ -74,6 +74,6 @@ export default class WerknemerService {
           body: JSON.stringify(data),
         };
         
-        return fetch(this.baseUrl + "/updatepassword", requestOptions)
+        return fetch(this.baseUrl + "/deletewerknemer", requestOptions)
     }
   }
