@@ -68,7 +68,6 @@ function edit() {
     editBtn.removeEventListener("click", edit);
 
     // enable inputs
-    const inputName = document.getElementById("name").disabled = false;
     const uurloon = document.getElementById("uurloon").disabled = false;
     const admin = document.getElementById("adminRecht").disabled = false;
 
@@ -92,8 +91,6 @@ function update() {
     // convert werknemer data to json
     const werknemerJson = convertWerknemerDataToJSON(inputNameValue, uurloonValue, adminValue);
     
-    console.log(werknemerJson);
-
     //get password data
     const password = document.getElementById("newPassword").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
@@ -101,8 +98,14 @@ function update() {
     // convert werknemer data to json
     const passwordJson = checkPassword(password, confirmPassword);
 
+    // update werknemer
+    werknemerServ.updateWerknemer(werknemerJson)
+    .then(response => {if (response.ok) {return response.json();} else throw "Error"});
+
+    // update password
     if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
-        console.log(passwordJson);
+        werknemerServ.updatePassword(passwordJson)
+        .then(response => {if (response.ok) {return response.json();} else throw "Error"});
     }
 }
 
