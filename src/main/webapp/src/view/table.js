@@ -20,10 +20,9 @@ function deleteTableData() {
     console.log(tableData);
 
     // remove event listners
-    //tableData[0].removeEventListener("click", function(){});
-    //tableData[1].removeEventListener("click", function(){});
-    //tableData[2].removeEventListener("click", function(){});
+    tableData.forEach((element) => element.removeEventListener("click", function(){}));
 
+    // remove table data
     table.innerHTML = "";
 }
 
@@ -117,11 +116,11 @@ function addWerknemers(werknemer) {
     }
 
     function showWerknemer(name) {
-        window.location.assign("./pages/werknemerPage.html?id=" + name);
+        window.location.assign("/pages/werknemerPage.html?id=" + name);
     }
 
     function showKlus(id) {
-        window.location.assign("./pages/klusPage.html?id=" + id);
+        window.location.assign("/pages/klusPage.html?id=" + id);
     }
 
 
