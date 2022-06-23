@@ -116,9 +116,11 @@ function addWerknemer() {
     const werknemer = werknemerSelect.value;
 
     if (werknemer === "addSelf") {
-            klusServ.addSelf(id);
+            werknemerServ.getSelf()
+            .then(response => {if (response.ok) {return response.json();} else throw "error"})
+            .then((data) => {addWerknemerToTable(data.naam)});
     }
-    else {}
+    else {addWerknemerToTable(werknemer)}
 
     // convert to json
     const json = addWerknemerJson(werknemer);
