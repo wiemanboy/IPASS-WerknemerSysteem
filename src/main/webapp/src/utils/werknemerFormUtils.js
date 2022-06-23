@@ -1,4 +1,4 @@
-function getIdFromUrl() {
+function getNameFromUrl() {
     let id;
   
     // get parameters from url
@@ -46,7 +46,7 @@ function convertWerknemerDataToJSON(name, uurloon, admin) {
   }
 
 export {
-    getIdFromUrl,
+    getNameFromUrl,
     convertWerknemerDataToJSON,
     checkPassword,
     deleteWerknemerJson

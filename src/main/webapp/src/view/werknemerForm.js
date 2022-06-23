@@ -1,7 +1,7 @@
-import { getIdFromUrl, convertWerknemerDataToJSON, checkPassword, deleteWerknemerJson } from "../utils/werknemerFormUtils.js";
+import { getNameFromUrl, convertWerknemerDataToJSON, checkPassword, deleteWerknemerJson } from "../utils/werknemerFormUtils.js";
 import WerknemerService from "../service/werknemerService.js";
 
-const name = getIdFromUrl();
+const name = getNameFromUrl();
 const werknemerServ = new WerknemerService();
 
 // get buttons
