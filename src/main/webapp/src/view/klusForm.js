@@ -158,26 +158,32 @@ function update() {
 
     // update klus
     // add werknemers
-    werknemerLst.forEach(element => {
-        if (element === "self") {
-            klusServ.addSelf(id)
-            .then(response => {if (response.ok) {return response.json();} else throw "error"});
-        }
-        else {
-            klusServ.addWerknemer(id, element)
-            .then(response => {if (response.ok) {return response.json();} else throw "error"});
-        }
-    });
+    if (materialLst === []) {
+        werknemerLst.forEach(element => {
+            if (element === "self") {
+                klusServ.addSelf(id)
+                .then(response => {if (response.ok) {return response.json();} else throw "error"});
+            }
+            else {
+                klusServ.addWerknemer(id, element)
+                .then(response => {if (response.ok) {return response.json();} else throw "error"});
+            }
+        });
+    }
 
     // add materials
-    materialLst.forEach(element => {
-        klusServ.addMateriaal(id, element)
-        .then(response => {if (response.ok) {return response.json();} else throw "error"});
-    });
+    if (materialLst === []) {
+        materialLst.forEach(element => {
+            klusServ.addMateriaal(id, element)
+            .then(response => {if (response.ok) {return response.json();} else throw "error"});
+        });
+    }
 
     // add uren
-    klusServ.addUren(id, uren)
-    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"});
+    if (uren !== 0) {
+        klusServ.addUren(id, uren)
+        .then(response => {if (response.ok) {return response.json();} else throw "Error"});
+    }
 }
 
 var materialEven = true;
