@@ -128,7 +128,7 @@ function addWerknemers(werknemer) {
     }
 
     function showWerknemer(name) {
-        window.location.assign("/pages/werknemerPage.html?id=" + name);
+        window.location.assign("/pages/werknemerPage.html?naam=" + name);
     }
 
     function showKlus(id) {
