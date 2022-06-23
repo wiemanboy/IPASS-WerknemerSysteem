@@ -187,6 +187,8 @@ function update() {
         klusServ.addUren(id, uren)
         .then(response => {if (response.ok) {return response.json();} else throw "Error"});
     }
+
+    window.location.assign('/pages/tablePage.html');
 }
 
 var materialEven = true;
