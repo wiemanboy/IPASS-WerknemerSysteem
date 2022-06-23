@@ -1,4 +1,4 @@
-import { getIdFromUrl, convertUrenMinutenToDouble, createKlusJson, addWerknemerJson, addMaterialJson } from "../utils/klusFormUtils.js";
+import { getIdFromUrl, convertUrenMinutenToDouble, formatDate, createKlusJson, addWerknemerJson, addMaterialJson } from "../utils/klusFormUtils.js";
 import KlusService from "../service/klusService.js";
 
 const id = getIdFromUrl();
@@ -50,7 +50,7 @@ function renderKlusForm() {
         .then((data) => {
             klantInput.value = data.klant;
             adresInput.value = data.adres;
-            datumInput.value = data.begindatum;
+            datumInput.value = formatDate(data.begindatum);
         });
 
         // disable inputs

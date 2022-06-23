@@ -10,9 +10,19 @@ function getIdFromUrl() {
     return id
 }
 
-function convertUrenMinutenToDouble(uren, minuten){
+function convertUrenMinutenToDouble(uren, minuten) {
     const urenDouble = Number(uren) + Number(minuten/60)
     return urenDouble
+}
+
+function formatDate(date) {
+    const day = date.slice(0,2)
+    const month = date.slice(3,5);
+    const year = date.slice(6,10);;
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    return formattedDate
 }
 
 function createKlusJson(klant, adres, begindatum) {
@@ -53,6 +63,7 @@ function addMaterialJson(material){
 export {
     getIdFromUrl,
     convertUrenMinutenToDouble,
+    formatDate,
     createKlusJson,
     addWerknemerJson,
     addMaterialJson
