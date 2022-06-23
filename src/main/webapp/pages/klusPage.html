@@ -4,6 +4,7 @@
         <title id="tableTitle">Klus</title>
         <link rel="stylesheet" href="../styles/initKlusForm.css" />
         <meta name="viewport" content="width=device-width">
+        <script type="module" src="/src/view/klusForm.js"></script>
     </head>
 
     <header>
@@ -12,7 +13,7 @@
 
     <body>
         <main>
-            <form id="klusForm" autocomplete="off">
+            <form id="klusForm" autocomplete="off" onsubmit="return false">
 
                 <!-- buttons -->
                 <button type="button" id="saveBtn">opslaan</button>
@@ -39,10 +40,10 @@
 
                         <!-- info of klus -->
                         <div id="klusInfo">
-                            <label for="addUren">
+                            <label for="addUren" id="uren">
                                 <span> Voeg uren aan klus: 
                                 <input type="number" min="0" name="addUren" id="addUren" placeholder="0">:
-                                <input type="number" min="0" name="addUren" id="addMinute" placeholder="00">
+                                <input type="number" min="0" name="addMinute" id="addMinute" placeholder="00">
                                 </span>
                             </label>
 
@@ -56,7 +57,7 @@
                                 </table>
 
                                 <div>
-                                    <input type="text" id="addMaterial"><button id="submitMaterialBtn">+</button>
+                                    <input type="text" id="addMaterial"><button id="addMaterialBtn">+</button>
                                 </div>
                     
                                 <!-- template for table-->
@@ -70,13 +71,16 @@
                             <!-- table for werknemers -->
                             <div id="werknemers">
                                 <table id="werknemerTable">
-                                    <thead><th id="kaas">werknemers</th></thead>
+                                    <thead><th>werknemers</th></thead>
                                     <tbody>
                                     </tbody>
                                 </table>
 
                                 <div>
-                                    <select name="" id="selectWerknemer"></select><button id="submitWerknemerBtn">+</button>
+                                    <select name="" id="selectWerknemer">
+                                        <option value="addSelf">jezelf toevoegen</option>
+                                    </select>
+                                    <button id="addWerknemerBtn">+</button>
                                 </div>
                     
                                 <!-- template for table-->
