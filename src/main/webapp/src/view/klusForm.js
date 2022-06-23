@@ -156,6 +156,8 @@ function update() {
     console.log(uren);
     console.log(materialLst);
     console.log(werknemerLst);
+    console.log(materialLst);
+    console.log(werknemerLst);
 }
 
 var materialEven = true;
