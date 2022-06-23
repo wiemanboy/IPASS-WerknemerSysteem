@@ -171,7 +171,7 @@ var werknemerEven = true;
 
 function addWerknemerToTable(werkbon){
             // get template data
-            const rowNode = document.querySelector("#werknemerTemplate").content.cloneNode(true);
+            const rowNode = document.querySelector("#werbonTemplate").content.cloneNode(true);
             const tableData = rowNode.querySelectorAll("td");
         
             // get table
