@@ -75,6 +75,9 @@ function create() {
 
     const json = createKlusJson(klant, adres, begindatum);
 
+    klusServ.createKlus(json)
+    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"});
+
     datumInput.value = begindatum;
 }
 
@@ -120,7 +123,7 @@ function addMaterial() {
     materialLst.push(json);
 
     // add to table
-    addMaterialToTable(json);
+    addMaterialToTable(json.materiaal);
 
     // empty input
     materialInput.value = "";
