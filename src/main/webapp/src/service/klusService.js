@@ -34,7 +34,7 @@ export default class KlusService {
             return fetch(`${this.baseUrl}/createklus`, requestOptions)
         }
 
-        addWerknemer(data) {               
+        addWerknemer(id, data) {               
             const requestOptions = {
               method: 'POST',
               mode: "same-origin",
@@ -45,7 +45,7 @@ export default class KlusService {
             return fetch(`${this.baseUrl}/klus${id}/addwerknemer` , requestOptions)
         }
 
-        addMateriaal(data) {               
+        addMateriaal(id, data) {               
             const requestOptions = {
               method: 'POST',
               mode: "same-origin",
@@ -56,7 +56,7 @@ export default class KlusService {
             return fetch(`${this.baseUrl}/klus${id}/addmateriaal` , requestOptions)
         }
 
-        addUren(data) {               
+        addUren(id, data) {               
             const requestOptions = {
               method: 'POST',
               mode: "same-origin",

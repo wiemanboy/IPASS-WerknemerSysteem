@@ -2,7 +2,7 @@ import { getIdFromUrl, convertUrenMinutenToDouble, createKlusJson, addWerknemerJ
 import KlusService from "../service/klusService.js";
 
 const id = getIdFromUrl();
-const werknemerServ = new KlusService();
+const klusServ = new KlusService();
 
 // get buttons
 const saveBtn = document.querySelector("#saveBtn");
@@ -44,6 +44,15 @@ function renderKlusForm() {
         // edit klus
         editBtn.addEventListener("click", edit);
 
+        // get klus data
+        klusServ.getKlus(id)
+        .then(response => {if (response.ok) {return response.json();} else throw "error"})
+        .then((data) => {
+            klantInput.value = data.klant;
+            adresInput.value = data.adres;
+            datumInput.value = data.begindatum;
+        });
+
         // disable inputs
         klantInput.disabled = true;
         adresInput.disabled = true;
@@ -62,7 +71,7 @@ function create() {
 
     const json = createKlusJson(klant, adres, begindatum);
 
-    console.log(json);
+    datumInput.value = begindatum;
 }
 
 function edit() {
