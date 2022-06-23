@@ -52,7 +52,7 @@ export default class KlusService {
             headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken"), 'Content-Type': 'application/json;charset=utf-8',},
           };
           
-          return fetch(`${this.baseUrl}/klus${id}/addwerknemer` , requestOptions)
+          return fetch(`${this.baseUrl}/klus${id}/addself` , requestOptions)
       }
 
         addMateriaal(id, data) {               
