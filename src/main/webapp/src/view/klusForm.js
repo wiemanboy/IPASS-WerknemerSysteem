@@ -52,6 +52,9 @@ function renderKlusForm() {
             adresInput.value = data.adres;
             datumInput.value = formatDate(data.beginDatum);
 
+            console.log(data.materialen);
+            console.log(data.werknemers);
+
             data.materialen.array.forEach(element => {addMaterialToTable(element)});
             data.werknemers.array.forEach(element => {addWerknemerToTable(element)});
 
