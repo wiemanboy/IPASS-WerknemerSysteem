@@ -50,7 +50,7 @@ function renderKlusForm() {
         .then((data) => {
             klantInput.value = data.klant;
             adresInput.value = data.adres;
-            datumInput.value = formatDate(data.begindatum);
+            datumInput.value = formatDate(data.beginDatum);
 
             data.materialen.array.forEach(element => {addMaterialToTable(element)});
             data.werknemers.array.forEach(element => {addWerknemerToTable(element)});
