@@ -51,6 +51,10 @@ function renderKlusForm() {
             klantInput.value = data.klant;
             adresInput.value = data.adres;
             datumInput.value = formatDate(data.begindatum);
+
+            data.materialen.array.forEach(element => {addMaterialToTable(element)});
+            data.werknemers.array.forEach(element => {addWerknemerToTable(element)});
+
         });
 
         // disable inputs
@@ -115,6 +119,9 @@ function addMaterial() {
     // add to list
     materialLst.push(json);
 
+    // add to table
+    addMaterialToTable(json);
+
     // empty input
     materialInput.value = "";
 }
@@ -130,6 +137,55 @@ function update() {
     console.log(materialLst);
     console.log(werknemerLst);
 }
+
+var materialEven = true;
+
+function addMaterialToTable(material){
+        // get template data
+        const rowNode = document.querySelector("#materialTemplate").content.cloneNode(true);
+        const tableData = rowNode.querySelectorAll("td");
+    
+        // get table
+        const table = document.querySelector("#materialBody");
+    
+        if (materialEven === true) {
+            rowNode.querySelector('tr').setAttribute('class', "even");
+            materialEven = false;
+        }
+        else {materialEven = true};
+    
+        // set table data
+        tableData[0].textContent = material.materiaal;
+
+         // add table data
+        table.appendChild(rowNode);
+}
+
+var werknemerEven = true;
+
+function addWerknemerToTable(werkbon){
+            // get template data
+            const rowNode = document.querySelector("#werknemerTemplate").content.cloneNode(true);
+            const tableData = rowNode.querySelectorAll("td");
+        
+            // get table
+            const table = document.querySelector("#werknemerBody");
+        
+            if (werknemerEven === true) {
+                rowNode.querySelector('tr').setAttribute('class', "even");
+                werknemerEven = false;
+            }
+            else {werknemerEven = true};
+        
+            // set table data
+            tableData[0].textContent = werkbon.werknemer.naam;
+            tableData[1].textContent = werkbon.uren;
+
+    
+             // add table data
+            table.appendChild(rowNode);
+}
+
 
 // ---------- Main Program ---------- //
 const materialLst = [];
