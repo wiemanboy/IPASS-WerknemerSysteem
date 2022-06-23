@@ -101,7 +101,7 @@ function edit() {
     werknemerServ.getWerknemers()
     .then(response => {if (response.ok) {return response.json();} else throw "error"})
     .then((data) => {
-        data.forEach(element => {werknemerSelect.options[mySelect.options.length] = new Option(element.naam, element.naam);})
+        data.forEach(element => {werknemerSelect.options[werknemerSelect.options.length] = new Option(element.naam, element.naam);})
     });
     
     // add eventlistners
