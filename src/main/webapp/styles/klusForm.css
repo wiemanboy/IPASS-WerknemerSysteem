@@ -52,7 +52,7 @@ th {border-bottom: 2px solid; padding: 0; text-align: center;}
 
 /* position table input fields */
 select, #submitWerknemerBtn, #addMaterial, #submitMaterialBtn {display: inline; width: 68%; margin: 0px; margin-right: 5px; margin-left: 5px;}
-#submitWerknemerBtn, #submitMaterialBtn {width: 50px;}
+#addWerknemerBtn, #addMaterialBtn {width: 50px;}
 
 /* size change based on screen width */
 @media screen and (min-width: 720px) {

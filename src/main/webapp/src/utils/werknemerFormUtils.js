@@ -1,13 +1,13 @@
 function getNameFromUrl() {
-    let id;
+    let name;
   
     // get parameters from url
     const urlParams = new URL(document.location).searchParams;
   
-    // set id
+    // set name
     id = urlParams.get('naam');
   
-    return id
+    return name
 }
 
 function convertWerknemerDataToJSON(name, uurloon, admin) {
