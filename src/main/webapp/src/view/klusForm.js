@@ -1,8 +1,11 @@
 import { getIdFromUrl, convertUrenMinutenToDouble, formatDate, createKlusJson, addWerknemerJson, addMaterialJson } from "../utils/klusFormUtils.js";
 import KlusService from "../service/klusService.js";
+import WerknemerService from "../service/werknemerService.js";
 
 const id = getIdFromUrl();
 const klusServ = new KlusService();
+const werknemerServ = new WerknemerService();
+
 
 // get buttons
 const saveBtn = document.querySelector("#saveBtn");
@@ -94,6 +97,13 @@ function edit() {
     materialInput.disabled = false;
     werknemerSelect.disabled = false;
 
+    //
+    werknemerServ.getWerknemers()
+    .then(response => {if (response.ok) {return response.json();} else throw "error"})
+    .then((data) => {
+        data.forEach(element => {werknemerSelect.options[mySelect.options.length] = new Option(element.naam, element.naam);})
+    });
+    
     // add eventlistners
     addWerknemerBtn.addEventListener("click", addWerknemer);
     addMaterialBtn.addEventListener("click", addMaterial);
@@ -102,14 +112,19 @@ function edit() {
 }
 
 function addWerknemer() {
-        // get value
-        const werknemer = werknemerSelect.value;
+    // get value
+    const werknemer = werknemerSelect.value;
 
-        // convert to json
-        const json = addWerknemerJson(werknemer);
+    if (werknemer === "addSelf") {
+            klusServ.addSelf(id);
+    }
+    else {}
+
+    // convert to json
+    const json = addWerknemerJson(werknemer);
     
-        // add to list
-        werknemerLst.push(json);
+    // add to list
+    werknemerLst.push(json);
 }
 
 function addMaterial() {

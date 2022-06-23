@@ -5,7 +5,7 @@ function getNameFromUrl() {
     const urlParams = new URL(document.location).searchParams;
   
     // set name
-    id = urlParams.get('naam');
+    name = urlParams.get('naam');
   
     return name
 }

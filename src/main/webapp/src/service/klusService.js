@@ -45,6 +45,16 @@ export default class KlusService {
             return fetch(`${this.baseUrl}/klus${id}/addwerknemer` , requestOptions)
         }
 
+        addSelf(id) {               
+          const requestOptions = {
+            method: 'POST',
+            mode: "same-origin",
+            headers: {"Authorization": "Bearer " + window.sessionStorage.getItem("JWTtoken"), 'Content-Type': 'application/json;charset=utf-8',},
+          };
+          
+          return fetch(`${this.baseUrl}/klus${id}/addwerknemer` , requestOptions)
+      }
+
         addMateriaal(id, data) {               
             const requestOptions = {
               method: 'POST',
