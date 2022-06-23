@@ -4,6 +4,7 @@ import model.Klus;
 import model.Werkbon;
 import model.Werknemer;
 import webservices.requests.AddMateriaalRequest;
+import webservices.requests.AddUrenRequest;
 import webservices.requests.AddWerknemerRequest;
 import webservices.requests.CreateKlusRequest;
 
@@ -78,7 +79,7 @@ public class KlusRecource {
     }
 
     @POST
-    @RolesAllowed("admin")
+    @RolesAllowed({"user","admin"})
     @Path("/klus{id}/addself")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -100,6 +101,29 @@ public class KlusRecource {
         }
 
         klus.addWerknemer(werknemer);
+
+        return Response.status(200).entity(klus).build();
+    }
+
+    @POST
+    @RolesAllowed({"user","admin"})
+    @Path("/klus{id}/adduren")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addUren(@PathParam("id") int klusID, @Context SecurityContext sc, AddUrenRequest request) {
+        // get self
+        Werknemer werknemer = null;
+        if (sc.getUserPrincipal() instanceof Werknemer){
+            werknemer = (Werknemer) sc.getUserPrincipal();
+        }
+
+        Klus klus = Klus.getKlusById(klusID);
+
+        if (klus == null) {return Response.status(404).entity("Klus not found!").build();}
+        if (werknemer == null) {return Response.status(404).entity("Werknemer not found!").build();}
+
+        Werkbon werkbon = klus.getWerknemer(werknemer);
+        werkbon.addUren(request.uren);
 
         return Response.status(200).entity(klus).build();
     }
