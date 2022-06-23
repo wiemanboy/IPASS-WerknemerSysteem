@@ -158,7 +158,7 @@ function update() {
 
     // update klus
     // add werknemers
-    if (materialLst === []) {
+    if (werknemerLst === []) {
         console.log("add werknemers");
         werknemerLst.forEach(element => {
             if (element === "self") {
