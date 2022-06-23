@@ -182,7 +182,7 @@ function update() {
     }
 
     // add uren
-    if (uren !== 0) {
+    if (uren.uren !== 0) {
         console.log("add uren");
         klusServ.addUren(id, uren)
         .then(response => {if (response.ok) {return response.json();} else throw "Error"});
