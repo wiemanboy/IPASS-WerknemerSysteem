@@ -55,8 +55,10 @@ function renderKlusForm() {
             console.log(data.materialen);
             console.log(data.werknemers);
 
-            data.materialen.array.forEach(element => {addMaterialToTable(element)});
-            data.werknemers.array.forEach(element => {addWerknemerToTable(element)});
+            addMaterialToTable(data.materialen[0]);
+
+            //data.materialen.array.forEach(element => {addMaterialToTable(element)});
+            //data.werknemers.array.forEach(element => {addWerknemerToTable(element)});
 
         });
 
