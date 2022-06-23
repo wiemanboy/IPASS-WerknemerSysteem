@@ -16,13 +16,14 @@ function convertUrenMinutenToDouble(uren, minuten) {
 }
 
 function formatDate(date) {
-    const day = date.slice(0,2)
-    const month = date.slice(3,5);
-    const year = date.slice(6,10);;
+    //const day = date.slice(0,2)
+    //const month = date.slice(3,5);
+    //const year = date.slice(6,10);;
 
-    const formattedDate = `${year}-${month}-${day}`;
+    //const formattedDate = `${year}-${month}-${day}`;
 
-    return formattedDate
+    console.log(date);
+    return date
 }
 
 function createKlusJson(klant, adres, begindatum) {
