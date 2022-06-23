@@ -198,8 +198,13 @@ function addWerknemerToTable(werkbon){
             else {werknemerEven = true};
         
             // set table data
-            tableData[0].textContent = werkbon.werknemer.naam;
-            tableData[1].textContent = werkbon.uren;
+            try {
+                tableData[0].textContent = werkbon.werknemer.naam;
+                tableData[1].textContent = werkbon.uren;
+            } catch (error) {
+                tableData[0].textContent = werkbon;
+                tableData[1].textContent = 0;
+            }
 
     
              // add table data
