@@ -12,7 +12,8 @@ function getIdFromUrl() {
 
 function convertUrenMinutenToDouble(uren, minuten) {
     const urenDouble = Number(uren) + Number(minuten/60)
-    return urenDouble
+    const jsonObject = {"uren": urenDouble}
+    return jsonObject
 }
 
 function formatDate(date) {

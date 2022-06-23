@@ -118,15 +118,19 @@ function addWerknemer() {
     if (werknemer === "addSelf") {
             werknemerServ.getSelf()
             .then(response => {if (response.ok) {return response.json();} else throw "error"})
-            .then((data) => {addWerknemerToTable(data.naam)});
+            .then((data) => {addWerknemerToTable(data.naam)})
+            .then(werknemerLst.push("self"));
     }
-    else {addWerknemerToTable(werknemer)}
+    else {
+        // add werknemer to table
+        addWerknemerToTable(werknemer)  
 
-    // convert to json
-    const json = addWerknemerJson(werknemer);
+        // convert to json
+        const json = addWerknemerJson(werknemer);
     
-    // add to list
-    werknemerLst.push(json);
+        // add to list
+        werknemerLst.push(json);
+    }
 }
 
 function addMaterial() {
@@ -153,11 +157,27 @@ function update() {
     const uren = convertUrenMinutenToDouble(urenValue, minutenValue);
 
     // update klus
-    console.log(uren);
-    console.log(materialLst);
-    console.log(werknemerLst);
-    console.log(materialLst);
-    console.log(werknemerLst);
+    // add werknemers
+    werknemerLst.forEach(element => {
+        if (element === "self") {
+            klusServ.addSelf(id)
+            .then(response => {if (response.ok) {return response.json();} else throw "error"});
+        }
+        else {
+            klusServ.addWerknemer(id, element)
+            .then(response => {if (response.ok) {return response.json();} else throw "error"});
+        }
+    });
+
+    // add materials
+    materialLst.forEach(element => {
+        klusServ.addMateriaal(id, element)
+        .then(response => {if (response.ok) {return response.json();} else throw "error"});
+    });
+
+    // add uren
+    klusServ.addUren(id, uren)
+    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"});
 }
 
 var materialEven = true;
