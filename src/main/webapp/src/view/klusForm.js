@@ -161,7 +161,7 @@ function addMaterialToTable(material){
         else {materialEven = true};
     
         // set table data
-        tableData[0].textContent = material.materiaal;
+        tableData[0].textContent = material;
 
          // add table data
         table.appendChild(rowNode);
