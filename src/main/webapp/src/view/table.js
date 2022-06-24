@@ -9,7 +9,7 @@ function renderTablePage() {
     renderKlussen();
 
     werknemerServ.getSelf()
-    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"})
+    .then(response => {if (response.ok) {return response.json();} else throw "Error"})
     .then((data) => { if (data.role === "admin") {
         document.querySelector("#renderWerknemersBtn").addEventListener("click", renderWerknemers);
     }

@@ -15,7 +15,7 @@ function authenticate() {
     auth.login(json)
 
     // check if user is authorized if so go to next page
-    .then(response => {if (response.ok) {window.location.assign('./pages/tablePage.html'); return response.json();} else {if (response.status === 401) {error.textContent = "werknemer bestaat niet";} throw "error";}})
+    .then(response => {if (response.ok) {window.location.assign('./pages/tablePage.html'); return response.json();} else {if (response.status === 401) {error.textContent = "Wachtwoord en/of naam verkeerd";} throw "error";}})
     // set JWTtoken in session storage
     .then(result => window.sessionStorage.setItem("JWTtoken", result.JWT))
 }
