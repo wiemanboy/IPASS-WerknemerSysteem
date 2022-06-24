@@ -13,7 +13,7 @@ function renderTablePage() {
     .then((data) => { if (data.role === "admin") {
         document.querySelector("#renderWerknemersBtn").addEventListener("click", renderWerknemers);
     }
-    else {document.querySelector("#renderWerknemersBtn").style.display = none;}
+    else {document.querySelector("#renderWerknemersBtn").style.display = "none";}
     });
 
     // add eventlistner for switching between klussen and werknemers table
