@@ -68,8 +68,8 @@ select, #submitWerknemerBtn, #addMaterial, #submitMaterialBtn {display: inline; 
 }
 
 @media screen and (max-width: 500px) {
-    tbody {width: 160px;}
-    #materials, #werknemers {width: 170px; border: 2px solid;}
+    tbody {width: 140px;}
+    #materials, #werknemers {width: 150px;}
     #addMaterial, select {width: 58%;}
     #urenInput {display: block;}
     #materialBody tr td {padding-right: 80px;}
