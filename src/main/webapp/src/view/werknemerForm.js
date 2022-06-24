@@ -28,6 +28,9 @@ function renderWerknemerForm() {
          // edit werknemer
         editBtn.addEventListener("click", edit);
 
+        // edit title
+        document.title = "Creëer Klus";
+
         // get werknemer
         let werknemer = null;
         if (name === "self") {
@@ -61,6 +64,9 @@ function renderWerknemerForm() {
         editBtn.style.visibility = "hidden";
         saveBtn.style.display = "initial";
         saveBtn.addEventListener("click", create);
+
+        // edit title
+        document.title = name;
     }
 };
 

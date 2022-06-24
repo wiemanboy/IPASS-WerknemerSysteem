@@ -40,8 +40,11 @@ function renderAddKlusBtn() {
 }
 
 function renderKlussen() {
+    // edit title
+    document.title = "Klussen";
+
     // edit header
-    document.querySelector("#tablePageHead").textContent = "klussen";
+    document.querySelector("#tablePageHead").textContent = "Klussen";
 
     // empty table
     deleteTableData();
@@ -84,8 +87,11 @@ function addKlussen(klus) {
 }
 
 function renderWerknemers() {
+    // edit title
+    document.title = "Werknemers";
+
     // edit header
-    document.querySelector("#tablePageHead").textContent = "werknemers";
+    document.querySelector("#tablePageHead").textContent = "Werknemers";
 
     // empty table
     deleteTableData();

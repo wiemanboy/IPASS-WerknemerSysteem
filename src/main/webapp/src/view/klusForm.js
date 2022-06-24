@@ -41,11 +41,17 @@ function renderKlusForm() {
         editBtn.style.visibility = "hidden";
         saveBtn.style.display = "initial";
 
+        // edit title
+        document.title = "Creëer Klus";
+
         saveBtn.addEventListener("click", create);
     }
     else {
         // edit klus
         editBtn.addEventListener("click", edit);
+
+        // edit title
+        document.title = "Klus #" + id;
 
         document.querySelector("#klusPageHead").textContent = "Klus #" + id;
 
