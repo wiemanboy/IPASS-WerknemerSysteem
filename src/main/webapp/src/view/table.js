@@ -101,8 +101,6 @@ function renderWerknemers() {
       });
 }
 
-var werknemerEven = true;
-
 function addWerknemers(werknemer) {
         // get template data    
         const rowNode = document.querySelector("#tableTemplate").content.cloneNode(true);
@@ -114,11 +112,11 @@ function addWerknemers(werknemer) {
         // set id
         rowNode.querySelector('tr').setAttribute('id', werknemer.naam);
 
-        if (werknemerEven === true) {
+        // 
+        const rows = table.querySelectorAll("tr");
+        if (rows.length % 2 === 0) {
             rowNode.querySelector('tr').setAttribute('class', "even");
-            werknemerEven = false;
         }
-        else {werknemerEven = true};
         
         // set table data
         tableData[0].textContent = werknemer.naam;

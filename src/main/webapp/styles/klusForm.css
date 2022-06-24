@@ -41,7 +41,6 @@
 
 /* add side scroller to table*/
 tbody {overflow-y: scroll; display: block; height: 200px; width: 230px;}
-td {padding-right: 35px;}
 
 /* seperate table head */
 th {border-bottom: 2px solid; padding: 0; text-align: center;}
@@ -49,6 +48,11 @@ th {border-bottom: 2px solid; padding: 0; text-align: center;}
 /* set table width */
 #materials {width: 240px; border: 2px solid;}
 #werknemers {width: 240px; border: 2px solid;}
+
+/* style rows in table */
+#materialBody tr td {padding-right: 170px;}
+#werknemerBody tr td {padding-right: 7px;}
+#werknemerBody tr td:first-child {padding-right: 123px;}
 
 /* position table input fields */
 select, #submitWerknemerBtn, #addMaterial, #submitMaterialBtn {display: inline; width: 68%; margin: 0px; margin-right: 5px; margin-left: 5px;}
