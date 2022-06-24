@@ -8,6 +8,9 @@ nav {
     padding-right: 5px;
 }
 
+/* add cursor to table */
+tr:hover {cursor:pointer;}
+
 /* style menu buttons */
 button {width: 100%; min-width: 97px; height: 50px; margin-top: 5px; bottom: 100px;}
 
