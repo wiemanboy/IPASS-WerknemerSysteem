@@ -131,12 +131,13 @@ function update() {
     // convert werknemer data to json
     const passwordJson = checkPassword(password, confirmPassword);
 
+    if (passwordJson === false) {
+        error.textContent = "Wachtwoorden komen niet overeen ";
+    }
+
     // update werknemer
     werknemerServ.updateWerknemer(werknemerJson)
-    .then(response => {if (response.ok) {
-        if (passwordJson === false) {
-            error.textContent = "Wachtwoorden komen niet overeen ";
-        }
+    .then(response => {if (response.ok || response.status === 403) {
 
         // update password
         if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
