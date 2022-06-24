@@ -26,7 +26,7 @@
                 <fieldset class="noBorderForm">
                     <div class="content">
 
-                        <!-- info of klant -->
+                        <!-- info of customer -->
                         <div id="klantInfo">
                             <label for="klant">klant:
                                 <input type="text" name="klant" id="klant" placeholder="voer naam van klant in...">
@@ -43,8 +43,10 @@
                         <div id="klusInfo">
                             <label for="addUren" id="uren">
                                 <span> Voeg uren aan klus: 
-                                <input type="number" min="0" name="addUren" id="addUren" placeholder="0">:
-                                <input type="number" min="0" name="addMinute" id="addMinute" placeholder="00">
+                                    <span id="urenInput">
+                                        <input type="number" min="0" name="addUren" id="addUren" placeholder="0">:
+                                        <input type="number" min="0" name="addMinute" id="addMinute" placeholder="00">
+                                    </span>
                                 </span>
                             </label>
 
