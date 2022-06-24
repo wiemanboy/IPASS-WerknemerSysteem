@@ -26,6 +26,18 @@ function formatDate(date) {
     return formattedDate
 }
 
+function formatTime(time) {
+    const minuten = time % 1;
+    const uren = time - minuten;
+
+    let formattedMinute = Math.round(minuten * 60);
+    if (formattedMinute > 59) {formattedMinute = 59}
+    if (formattedMinute < 10) {formattedMinute = "0" + formattedMinute}
+    const formattedTime = `${uren}:${formattedMinute}`;
+
+    return formattedTime
+}
+
 function createKlusJson(klant, adres, begindatum) {
     // make jsonObject
     const jsonObject = {"klant": "", "adres": "", "begindatum": ""};
@@ -65,6 +77,7 @@ export {
     getIdFromUrl,
     convertUrenMinutenToDouble,
     formatDate,
+    formatTime,
     createKlusJson,
     addWerknemerJson,
     addMaterialJson

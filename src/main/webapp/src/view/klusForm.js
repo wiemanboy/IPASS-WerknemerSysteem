@@ -1,4 +1,4 @@
-import { getIdFromUrl, convertUrenMinutenToDouble, formatDate, createKlusJson, addWerknemerJson, addMaterialJson } from "../utils/klusFormUtils.js";
+import { getIdFromUrl, convertUrenMinutenToDouble, formatDate, formatTime, createKlusJson, addWerknemerJson, addMaterialJson } from "../utils/klusFormUtils.js";
 import KlusService from "../service/klusService.js";
 import WerknemerService from "../service/werknemerService.js";
 
@@ -237,10 +237,10 @@ function addWerknemerToTable(werkbon){
             // set table data
             try {
                 tableData[0].textContent = werkbon.werknemer.naam;
-                tableData[1].textContent = werkbon.uren;
+                tableData[1].textContent = formatTime(werkbon.uren);
             } catch (error) {
                 tableData[0].textContent = werkbon;
-                tableData[1].textContent = 0;
+                tableData[1].textContent = formatTime(0);
             }
 
     
