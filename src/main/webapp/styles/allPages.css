@@ -25,8 +25,8 @@ input:hover, input:focus {font-size: 15px;}
 
 /* custom scrollbar */
 ::-webkit-scrollbar {width: 5px;}
-::-webkit-scrollbar-thumb {background: #2e2e2e; transition: 0.5s;}
+::-webkit-scrollbar-thumb {background: #4B4B4B; transition: 0.5s;}
 
 @media (prefers-color-scheme: light) {
-    ::-webkit-scrollbar-thumb {background: #efefef;}
+    ::-webkit-scrollbar-thumb {background: #9B9B9B;}
 }
