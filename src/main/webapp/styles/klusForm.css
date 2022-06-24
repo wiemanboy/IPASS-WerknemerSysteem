@@ -72,6 +72,7 @@ select, #submitWerknemerBtn, #addMaterial, #submitMaterialBtn {display: inline; 
     #materials, #werknemers {width: 170px; border: 2px solid;}
     #addMaterial, select {width: 58%;}
     #urenInput {display: block;}
+    #werknemerBody tr td:first-child {padding-right: 56px;}
 }
 
 /* when screen gets to small reposition some elements */
