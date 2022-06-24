@@ -40,7 +40,7 @@
 #Begindatum {width: 150px;}
 
 /* style tbody */
-tbody {overflow-y: scroll; overflow-x: hidden; overflow-y: hidden; display: block; height: 200px; width: 230px; overflow: overlay;}
+tbody {overflow-y: scroll; overflow-x: hidden; overflow-y: hidden; display: block; height: 200px; width: 230px;}
 tbody:hover {overflow-y: visible;}
 
 /* seperate table head */
@@ -53,7 +53,7 @@ th {border-bottom: 2px solid; padding: 0; text-align: center;}
 /* style rows in table */
 #materialBody tr td {padding-right: 100px;}
 #werknemerBody tr td {padding-right: 7px;}
-#werknemerBody tr td:first-child {padding-right: 110px;}
+#werknemerBody tr td:first-child {padding-right: 120px;}
 
 /* position table input fields */
 select, #submitWerknemerBtn, #addMaterial, #submitMaterialBtn {display: inline; width: 68%; margin: 0px; margin-right: 5px; margin-left: 5px;}
