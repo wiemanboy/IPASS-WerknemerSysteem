@@ -51,9 +51,9 @@ th {border-bottom: 2px solid; padding: 0; text-align: center;}
 
 
 /* style rows in table */
-#materialBody tr td {padding-right: 110px;}
+#materialBody tr td {padding-right: 100px;}
 #werknemerBody tr td {padding-right: 7px;}
-#werknemerBody tr td:first-child {padding-right: 103px;}
+#werknemerBody tr td:first-child {padding-right: 110px;}
 
 /* position table input fields */
 select, #submitWerknemerBtn, #addMaterial, #submitMaterialBtn {display: inline; width: 68%; margin: 0px; margin-right: 5px; margin-left: 5px;}
