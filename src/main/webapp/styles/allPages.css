@@ -22,3 +22,7 @@ input:hover, input:focus {font-size: 15px;}
         header, button {background-color: #1B1B1B;}
     * {color: #999999;}
   }
+
+/* custom scrollbar */
+::-webkit-scrollbar {width: 5px;}
+::-webkit-scrollbar-thumb {background: #888; }
