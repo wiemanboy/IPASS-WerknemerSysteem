@@ -3,6 +3,9 @@ import { convertFormDataToJSON } from "../utils/loginFormUtils.js"
 
 const auth = new AuthenticationService();
 
+// get error display
+const error = document.querySelector(".errorDisplay");
+
 function authenticate() {
     // get login data from form
     const formData = new FormData(document.forms['login']);
@@ -12,7 +15,7 @@ function authenticate() {
     auth.login(json)
 
     // check if user is authorized if so go to next page
-    .then(response => {if (response.ok) {window.location.assign('./pages/tablePage.html'); return response.json();} else throw "wrong username or password"})
+    .then(response => {if (response.ok) {window.location.assign('./pages/tablePage.html'); return response.json();} else {if (response.status === 401) {error.textContent = "werknemer bestaat niet";} throw "error";}})
     // set JWTtoken in session storage
     .then(result => window.sessionStorage.setItem("JWTtoken", result.JWT))
 }

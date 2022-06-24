@@ -10,6 +10,9 @@ const editBtn = document.querySelector("#editBtn");
 const deleteBtn = document.querySelector("#deleteBtn");
 const passwordForm = document.querySelector("#passwordForm")
 
+// get error display
+const error = document.querySelector(".errorDisplay");
+
 function renderWerknemerForm() {
     // hide buttons and password form
     saveBtn.style.display = "none";
@@ -117,9 +120,6 @@ function update() {
     const inputNameValue = document.getElementById("name").value;
     const uurloonValue = document.getElementById("uurloon").value;
     const adminValue = document.getElementById("adminRecht").checked;
-
-    // get error display
-    const error = document.querySelector(".errorDisplay");
 
     // convert werknemer data to json
     const werknemerJson = convertWerknemerDataToJSON(inputNameValue, uurloonValue, adminValue);
