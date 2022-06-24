@@ -70,10 +70,10 @@ select, #submitWerknemerBtn, #addMaterial, #submitMaterialBtn {display: inline; 
 @media screen and (max-width: 500px) {
     tbody {width: 140px;}
     #materials, #werknemers {width: 150px;}
-    #addMaterial, select {width: 58%;}
-    #urenInput {display: block;}
+    #addMaterial, select {width: 53%;}
     #materialBody tr td {padding-right: 80px;}
-    #werknemerBody tr td:first-child {padding-right: 46px;}
+    #werknemerBody tr td:first-child {padding-right: 36px;}
+    #urenInput {display: block;}
 }
 
 /* when screen gets to small reposition some elements */
