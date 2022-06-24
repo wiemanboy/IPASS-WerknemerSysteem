@@ -8,9 +8,16 @@ function renderTablePage() {
     // start with klussen table
     renderKlussen();
 
+    werknemerServ.getSelf()
+    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"})
+    .then((data) => { if (data.role === "admin") {
+        document.querySelector("#renderWerknemersBtn").addEventListener("click", renderWerknemers);
+    }
+    else {document.querySelector("#renderWerknemersBtn").style.display = none;}
+    });
+
     // add eventlistner for switching between klussen and werknemers table
     document.querySelector("#renderKlussenBtn").addEventListener("click", renderKlussen);
-    document.querySelector("#renderWerknemersBtn").addEventListener("click", renderWerknemers);
 }
 
 function deleteTableData() {

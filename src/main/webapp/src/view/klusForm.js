@@ -28,18 +28,18 @@ const minutenInput = document.querySelector("#addMinute");
 const materialInput = document.querySelector("#addMaterial");
 const werknemerSelect = document.querySelector("#selectWerknemer");
 
-
+const error = document.querySelector(".errorDisplay");
 
 function renderKlusForm() {
     // hide buttons and klus info
-    saveBtn.style.visibility = "hidden";
+    saveBtn.style.display = "none";
     uren.style.visibility = "hidden";
 
     if (id === null) {
         // create klus
         klusInfo.style.visibility = "hidden";
         editBtn.style.visibility = "hidden";
-        saveBtn.style.visibility = "visible";
+        saveBtn.style.display = "initial";
 
         saveBtn.addEventListener("click", create);
     }
@@ -47,9 +47,11 @@ function renderKlusForm() {
         // edit klus
         editBtn.addEventListener("click", edit);
 
+        document.querySelector("#klusPageHead").textContent = "Klus #" + id;
+
         // get klus data
         klusServ.getKlus(id)
-        .then(response => {if (response.ok) {return response.json();} else throw "error"})
+        .then(response => {if (response.ok) {return response.json();} else {if (response.status === 404) {error.textContent = "Klus bestaat niet";} throw "error";}})
         .then((data) => {
             klantInput.value = data.klant;
             adresInput.value = data.adres;
@@ -79,7 +81,7 @@ function create() {
     const json = createKlusJson(klant, adres, begindatum);
 
     klusServ.createKlus(json)
-    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"});
+    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else {if (response.status === 409) {error.textContent = "Klus bestaat al";} throw "error";}});
 
     datumInput.value = begindatum;
 }
@@ -90,7 +92,7 @@ function edit() {
     editBtn.style.visibility = "hidden";
 
     // show buttons and inputs
-    saveBtn.style.visibility = "visible";
+    saveBtn.style.display = "initial";
     uren.style.visibility = "visible";
 
     // enable inputs
@@ -115,6 +117,7 @@ function addWerknemer() {
     // get value
     const werknemer = werknemerSelect.value;
 
+    // add self
     if (werknemer === "addSelf") {
             werknemerServ.getSelf()
             .then(response => {if (response.ok) {return response.json();} else throw "error"})
@@ -157,6 +160,7 @@ function update() {
     const uren = convertUrenMinutenToDouble(urenValue, minutenValue);
 
     // update klus
+
     // add werknemers
     if (werknemerLst !== []) {
         console.log("add werknemers");
@@ -177,7 +181,7 @@ function update() {
         console.log("add materials");
         materialLst.forEach(element => {
             klusServ.addMateriaal(id, element)
-            .then(response => {if (response.ok) {return response.json();} else throw "error"});
+            .then(response => {if (response.ok) {return response.json();} else { throw "error";}});
         });
     }
 
@@ -185,7 +189,7 @@ function update() {
     if (uren.uren !== 0) {
         console.log("add uren");
         klusServ.addUren(id, uren)
-        .then(response => {if (response.ok) {return response.json();} else throw "Error"});
+        .then(response => {if (response.ok) {return response.json();} else {if (response.status === 404) {error.textContent = "U bent nog geen onderdeel van deze klus, uren niet toegevoegd";} throw "error";}});
     }
 
     window.location.assign('/pages/tablePage.html');

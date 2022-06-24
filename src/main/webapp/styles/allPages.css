@@ -10,6 +10,9 @@ button {opacity: 0.75;}
 button:hover {opacity: 1; font-size: 15px; cursor:pointer;}
 input:hover, input:focus {font-size: 15px;}
 
+/* style error display */
+.errorDisplay {color: red; font-size: 22px; margin-left: 20px;}
+
 /* color changes for dark mode */
 @media (prefers-color-scheme: dark) {
     body {background-color: #343434;}

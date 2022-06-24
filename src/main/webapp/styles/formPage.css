@@ -27,7 +27,7 @@ div {width: 100%; margin-bottom: 10px;}
 a {text-decoration-line: none;}
 button {width: 100px; margin: 2px; margin-top: 10px;}
 
-#saveBtn {margin-left: 27px;}
+#saveBtn, #cancelBtn {margin-left: 27px;}
 
 #deleteBtn {color: red; border-color: red;}
 

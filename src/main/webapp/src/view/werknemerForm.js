@@ -12,7 +12,7 @@ const passwordForm = document.querySelector("#passwordForm")
 
 function renderWerknemerForm() {
     // hide buttons and password form
-    saveBtn.style.visibility = "hidden";
+    saveBtn.style.display = "none";
     deleteBtn.style.visibility = "hidden";
     passwordForm.style.visibility = "hidden";
 
@@ -36,7 +36,7 @@ function renderWerknemerForm() {
 
         // fill in inputs
         werknemer    
-        .then(response => {if (response.ok) {return response.json();} else throw "error"})
+        .then(response => {if (response.ok) {return response.json();} else {if (response.status === 404) {error.textContent = "werknemer bestaat niet";} throw "error";}})
         .then((data) => {
             let adminValue = false;
             if (data.role === "admin") {adminValue = true;}
@@ -44,6 +44,8 @@ function renderWerknemerForm() {
             inputName.value = data.naam;
             uurloon.value = data.uurloon;
             admin.checked = adminValue;
+
+            document.querySelector("#werknemerPageHead").textContent = data.naam
         });
 
         // disable inputs
@@ -54,7 +56,7 @@ function renderWerknemerForm() {
     else {
         // create werknemer
         editBtn.style.visibility = "hidden";
-        saveBtn.style.visibility = "visible";
+        saveBtn.style.display = "initial";
         saveBtn.addEventListener("click", create);
     }
 };
@@ -73,7 +75,7 @@ function edit() {
     }
 
     //  show buttons
-    saveBtn.style.visibility = "visible";
+    saveBtn.style.display = "initial";
     deleteBtn.style.visibility = "visible";
     if (name === "self") {
         passwordForm.style.visibility = "visible";
@@ -94,7 +96,7 @@ function create() {
 
     // create werknemer
     werknemerServ.createWerknemer(werknemerJson)
-    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else throw "Error"});
+    .then(response => {if (response.ok) {window.location.assign('/pages/tablePage.html'); return response.json();} else {if (response.status === 409) {error.textContent = "Werknemer bestaat al";} throw "error";}});
 
 }
 
@@ -116,6 +118,9 @@ function update() {
     const uurloonValue = document.getElementById("uurloon").value;
     const adminValue = document.getElementById("adminRecht").checked;
 
+    // get error display
+    const error = document.querySelector(".errorDisplay");
+
     // convert werknemer data to json
     const werknemerJson = convertWerknemerDataToJSON(inputNameValue, uurloonValue, adminValue);
     
@@ -129,7 +134,10 @@ function update() {
     // update werknemer
     werknemerServ.updateWerknemer(werknemerJson)
     .then(response => {if (response.ok) {
-        
+        if (passwordJson === false) {
+            error.textContent = "Wachtwoorden komen niet overeen ";
+        }
+
         // update password
         if (passwordJson !== false && passwordJson.password !== "" && password !== "" && confirmPassword !== ""){
         werknemerServ.updatePassword(passwordJson)
