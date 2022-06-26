@@ -18,6 +18,12 @@ function renderTablePage() {
 
     // add eventlistner for switching between klussen and werknemers table
     document.querySelector("#renderKlussenBtn").addEventListener("click", renderKlussen);
+
+    document.querySelector("#logoutBtn").addEventListener("click", removeToken);
+}
+
+function removeToken(){
+    window.sessionStorage.setItem("JWTtoken", "");
 }
 
 function deleteTableData() {
