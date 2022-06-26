@@ -73,7 +73,7 @@ select, #submitWerknemerBtn, #addMaterial, #submitMaterialBtn {display: inline; 
     #materials, #werknemers {width: 150px;}
     #addMaterial, select {width: 53%;}
     #materialBody tr td {padding-right: 80px;}
-    #werknemerBody tr td:first-child {padding-right: 36px;}
+    #werknemerBody tr td:first-child {padding-right: 26px;}
     #urenInput {display: block;}
 }
 
